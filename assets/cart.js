@@ -16,6 +16,11 @@ CREATE PRODUCT CATALOG IN JSON - (JSON)
 	
 LOAD PRODUCT CATALOG TO WEBSITE - (AJAX)
 
+	- create and run init function
+
+	- create variable for DOM elements (object)
+	- create function to map needed elements in the variable for DOM elements
+
 	- create XMLHttpRequest-Object
 	- define path
 	- confirm object was loaded
@@ -23,27 +28,26 @@ LOAD PRODUCT CATALOG TO WEBSITE - (AJAX)
 
 		# if featured = false
 			!! create product list
-				# transfer each piece of content to empty div
+				# transfer products to empty div
 					# div container for product details
-						# image container with class & image src
+						# image container with class & image src & alt 
 						# div container with class for name
 						# div container with class for price
 						# quantity counter
-							> dropdown list
-						# add to cart button with class and data with product id
+						# add to cart button with class and data with product id and amount
 			
 			# if featured = true
 				!! create featured product
 					# transfer content to empty div
-						# image container with class & image src
+						# image container with class & image src & alt
 						# div container for rest of info
-						# div container with class for name
-						# div container with class for price
-						# quantity counter 
-						# add to cart button with class and data with product id
+							# div container with class for name
+							# div container with class for price
+							# quantity counter 
+							# add to cart button with class and data with product id and amount
 
-			# save catalog in local storage
-			# save empty cart in local storage (if cart empty)
+			# save catalog in local storage as object
+			# save empty cart in local storage as array (if cart empty)
 		
 
 
@@ -51,7 +55,7 @@ LOAD PRODUCT CATALOG TO WEBSITE - (AJAX)
 	- start request
 
 	- create variable for pulling out the catalog from storage
-	- create variable for cart
+	- create variable for pulling out the cart from storage
 
 
 TRANSFER PRODUCTS TO CART VIA LOCALSTORAGE - (LOCALSTORAGE)
