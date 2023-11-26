@@ -1,19 +1,4 @@
 /*
-
-CREATE HOMEPAGE - (HTML + CSS)
-
-CREATE CART PAGE - (HTML + CSS)
-
-CREATE PRODUCT CATALOG IN JSON - (JSON)
-	- Product ID
-	- Product name
-	- Price
-	- Image (x2, image front, image back)
-	- Amount = 0 
-	- featured = true / false
-	- total price of product = null
-	- (Color)
-	- (Sale)
 	
 LOAD PRODUCT CATALOG TO WEBSITE - (AJAX)
 
