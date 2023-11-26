@@ -1,0 +1,56 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    font-family: robote, Verdana, Geneva, Tahoma, sans-serif;
+    background-color: white;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #00275B;
+}
+
+.navbar {
+    width: 60vw;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.header-links {
+    display: flex;
+    gap: 1.5em;
+    flex-wrap: wrap;
+    margin-left: 35px;
+    margin-right: 35px;
+    color: #00275B;
+    font-size: 1.05em;
+}
+
+.icon-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+}
+
+.greeting {
+    display: flex;
+    margin-left: auto;
+    margin-right: 30px;
+    font-size: 1em;
+    color: #00275B;
+}
+
