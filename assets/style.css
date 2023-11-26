@@ -9,6 +9,8 @@ body {
     background-color: white;
 }
 
+/* header */
+
 nav {
     display: flex;
     justify-content: center;
@@ -52,5 +54,26 @@ a {
     margin-right: 30px;
     font-size: 1em;
     color: #00275B;
+}
+
+/* body */
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.main-content {
+    width: 60vw;
+}
+
+.heading {
+    font-size: 1.75em;
+    letter-spacing: 0.075em;
+    margin: calc(1ex / 0.42) 0;
+}
+
+.featured-product {
+    margin: calc(1ex / 0.42) 0;
 }
 
