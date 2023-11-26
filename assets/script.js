@@ -331,24 +331,34 @@ PRODUCT SEARCH - (STRING + OBJECT)
 
 PRODUCT REVIEWS - (USER INPUT)
 
+	- create empty review object
+
+	- create click event listener for Review
+	- create function to handle click
+				# make review form visible
+
+	- create click event listener for submit button
+	- create function to handle click
+				# pass star rating (index1) to object
+				# pass review to object
+				# pass data of review to object
+				# hide review form
+				# make submitted div visible
+
+	- create click even for close button
+	- create function to handle click
+				# hide submitted div
+
+
 	- create click event listener for stars
-	- create function that handles click for number of ratings 
-		# number of ratings + 1
-
-// Can only rate once.
-
-	- create function that handles click for average of rating
-		# color stars and all stars that come before the clicked one
-			 # change class of clicked star - activated
-			 # change class of stars with data value < data value of clicked star - activated
-			 # change class of stars with data value > data value of clicked star - deactivated 
-			 # disable click event
-		# extract data value from clicked star
-
-		loop through stars - if activated - (sum data values)/5
-
-
-
-
+	- create function to handle click
+					# for each star
+						# get index1 of clicked star
+							# for each star till index1
+									# color star
+							# for each star beginning at index1+1 
+									# remove color
+						# disable click
+						# return index1
 
 */
