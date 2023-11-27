@@ -128,4 +128,44 @@ footer {
 }
 
 
+/* cart */
+
+.cart-content {
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    align-items: center;
+    justify-content: center;
+    color: #00275B;
+}
+
+.cart-heading-empty {
+    font-size: 2em;;
+}
+
+.cart-button-empty {
+    background-color: #00275B;
+    color: white;
+    padding: 0.8em 2em;
+    font-size: 1.1em;
+    letter-spacing: 0.2em;
+    margin: 1.2em 0 3em 0;
+}
+
+.cart-button-empty a {
+    color: white;
+}
+
+.cart-account-heading {
+    font-size: 1.4em;
+    margin-bottom: 0.7em;
+}
+
+.cart-login a {
+    text-decoration: underline;
+}
+
+
+
+
 
