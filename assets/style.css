@@ -5,7 +5,8 @@
 
 body {
     height: 100vh;
-    font-family: robote, Verdana, Geneva, Tahoma, sans-serif;
+    font-family: roboto, Verdana, Geneva, Tahoma, sans-serif;
+    letter-spacing: 0.05em;
     background-color: white;
 }
 
@@ -42,10 +43,18 @@ a {
     font-size: 1.05em;
 }
 
+.header-links li:nth-child(2) {
+    cursor: pointer;
+}
+
 .icon-list {
     display: flex;
     flex-wrap: wrap;
     gap: 1.5em;
+}
+
+.icon-list li img {
+    cursor: pointer;
 }
 
 .greeting {
@@ -93,6 +102,7 @@ footer {
     display: flex;
     justify-content: space-between;
     margin: calc(1ex / 0.42) 0;
+    flex-wrap: wrap;
 }
 
 .footer-list {
@@ -109,6 +119,10 @@ footer {
     font-size: 1.2em;
     margin-bottom: 0.75em;
     
+}
+
+.footer-list li:last-child {
+    cursor: pointer;
 }
 
 .disclaimer {
@@ -130,7 +144,7 @@ footer {
 
 /* cart */
 
-.cart-content {
+.cart-content, .login-content {
     display: flex;
     flex-direction: column;
     height: 70vh;
@@ -139,17 +153,18 @@ footer {
     color: #00275B;
 }
 
-.cart-heading-empty {
-    font-size: 2em;;
+.cart-heading-empty, .login-heading {
+    font-size: 2em;
 }
 
-.cart-button-empty {
+.cart-button-empty, .login-button {
     background-color: #00275B;
     color: white;
     padding: 0.8em 2em;
     font-size: 1.1em;
     letter-spacing: 0.2em;
     margin: 1.2em 0 3em 0;
+    cursor: pointer;
 }
 
 .cart-button-empty a {
@@ -163,6 +178,37 @@ footer {
 
 .cart-login a {
     text-decoration: underline;
+}
+
+/* login */
+
+.login-heading {
+    margin-bottom: 1em;
+}
+
+.login-button {
+    margin: 2.5em 0 1em 0;
+}
+
+.create-account {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.login-input {
+    padding: 1em 1em;
+    font-size: 1.1em;
+    letter-spacing: 0.1em;
+    margin: 0.7em 0;
+    width: 55%
+}
+
+.forgot-password {
+    font-size: 0.8em;
+    text-decoration: underline;
+    align-self: flex-start;
+    margin-left: 21%;
+    cursor: pointer;
 }
 
 
