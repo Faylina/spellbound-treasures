@@ -82,7 +82,7 @@ main {
     margin: calc(1ex / 0.42) 0;
 }
 
-.featured-product {
+.featuredProduct {
     margin: calc(1ex / 0.42) 0;
 }
 
@@ -211,7 +211,4 @@ footer {
     cursor: pointer;
 }
 
-
-
-
-
+/* products */

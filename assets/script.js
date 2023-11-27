@@ -1,16 +1,239 @@
+'use strict';
+
+
+// VARIABLES
+
+const domElements = {};
+
+// FUNCTIONS
+
+const mapDOM = () => {
+	domElements.productGallery = document.querySelector('.productGallery');
+	domElements.featuredProduct = document.querySelector('.featuredProduct');
+}
+
+const createEl = (
+	type = 'div',
+	className = false,
+	parent = false,
+	attribute = false,
+	content = false,
+) => {
+	const el = document.createElement(type);
+	if (className) el.className = className;
+	if (attribute) {
+		for (let i = 0; i < attribute.length; i++) {
+			el.setAttribute(attribute[i][0], attribute[i][1]);
+			}
+	}
+	if (content) el.textContent = content;
+	if (parent) parent.append(el);
+
+	return el;
+
+}
+
+// load product catalog to website
+
+
+const renderCatalog = products => {
+	for (let i = 0; i < products.products.length; i++) {
+		if (products.products[i].featured === false) {
+
+			const productContainer = createEl (
+					'div', 
+					`${products.products[i].productID}`, 
+					domElements.productGallery
+				);
+
+			const productImage = createEl (
+				'img',
+				'productImage', 
+				productContainer, 
+				[
+					['alt', `${products.products[i].alt}`],
+					['src', `${products.products[i].image[0]}`],
+					['height', "200"]
+				]);
+
+			const nameContainer = createEl (
+				'div',
+				'nameContainer',
+				productContainer,
+				false,
+				`${products.products[i].productName}`
+			);
+
+			const priceContainer = createEl (
+				'div',
+				'priceContainer',
+				productContainer,
+				false,
+				`\$${products.products[i].price}`
+			);
+
+			const quantityCounter = createEl (
+				'div',
+				'quantityCounter',
+				productContainer
+			);
+
+			const plus = createEl (
+				'div',
+				'plus',
+				quantityCounter,
+				false,
+				'+'
+			);
+
+			const quantityInput = createEl (
+				'input',
+				'quantityInput',
+				quantityCounter,
+				[
+					['type', 'number'],
+					['id','quantityInput'],
+					['value', '1']
+				]
+			);
+
+			const minus = createEl (
+				'div',
+				'minus',
+				quantityCounter,
+				false,
+				'-'
+			);
+
+			const addToCart = createEl (
+				'button',
+				'addToCart',
+				productContainer,
+				[
+					['data-id', `${products.products[i].productID}`],
+					['data-amount', `${products.products[i].amount}`],
+				],
+				'Add to cart'
+			);
+		} else {
+
+			const featuredContainer = createEl (
+				'div',
+				'featuredContainer',
+				domElements.featuredProduct,
+			);
+
+			const featuredImage = createEl (
+				'img',
+				'featuredImage',
+				featuredContainer,
+				[
+					['alt', `${products.products[i].alt}`],
+					['src', `${products.products[i].image[0]}`],
+					['height', '450']
+				],
+			);
+
+			const detailsContainer = createEl (
+				'div',
+				'detailsContainer',
+				featuredContainer,
+			);
+
+			const featuredNameContainer = createEl (
+				'div',
+				'featuredNameContainer',
+				detailsContainer,
+				false,
+				`${products.products[i].productName}`
+			);
+
+			const featuredPriceContainer = createEl (
+				'div',
+				'featuredPriceContainer',
+				detailsContainer,
+				false,
+				`\$${products.products[i].price}`
+			);
+
+			const featuredQuantityCounter = createEl (
+				'div',
+				'featuresQuantityCounter',
+				detailsContainer,
+			);
+
+			const featuredPlus = createEl (
+				'div',
+				'featuredPlus',
+				featuredQuantityCounter,
+				false,
+				'+'
+			);
+
+			const featuredQuantityInput = createEl (
+				'input',
+				'featuredQuantityInput',
+				featuredQuantityCounter,
+				[
+					['type', 'number'],
+					['id', 'featuredQuantityInput'],
+					['value', '1']
+				],
+			);
+
+			const featuredMinus = createEl (
+				'div',
+				'featuredMinus',
+				featuredQuantityCounter,
+				false,
+				'-'
+			);
+
+			const featuredAddToCart = createEl (
+				'button',
+				'featuredAddToCart',
+				detailsContainer,
+				[
+					['data-id', `${products.products[i].productID}`],
+					['data-amount', `${products.products[i].amount}`],
+				],
+				'Add to cart'
+			);
+		}
+	}
+}
+
+
+const getProductCatalog = () => {
+	const xhr = new XMLHttpRequest();
+	xhr.open('get', './assets/catalog.json');
+	const parseCatalog = () => {
+		if (xhr.status == 200) {
+			let catalog = JSON.parse(xhr.response);
+			renderCatalog(catalog);
+		} else {
+			console.warn(xhr.responseURL, xhr.statusText);
+		}
+	}
+	xhr.addEventListener('load', parseCatalog);
+	xhr.send();
+}
+
+
+
+// RUN FUNCTIONS
+
+const runFunctions = () => {
+	mapDOM(); 
+	getProductCatalog();
+	
+}
+
+runFunctions();
+
 /*
 	
 LOAD PRODUCT CATALOG TO WEBSITE - (AJAX)
-
-	- create and run init function
-
-	- create variable for DOM elements (object)
-	- create function to map needed elements in the variable for DOM elements
-
-	- create XMLHttpRequest-Object
-	- define path
-	- confirm object was loaded
-	- is status okay -> render content 
 
 		# if featured = false
 			!! create product list
@@ -42,10 +265,6 @@ LOAD PRODUCT CATALOG TO WEBSITE - (AJAX)
 			# save catalog in local storage as object
 			# save empty cart in local storage as array (if cart empty)
 		
-
-
-	- is status not okay -> warn
-	- start request
 
 	- create variable for pulling out the catalog from storage
 	- create variable for pulling out the cart from storage
