@@ -42,8 +42,11 @@ const renderCatalog = products => {
 
 			const productContainer = createEl (
 					'div', 
-					`${products.products[i].productID}`, 
-					domElements.productGallery
+					'productContainer', 
+					domElements.productGallery,
+					[
+						['data-id', `${products.products[i].productID}`],
+					]
 				);
 
 			const productImage = createEl (
@@ -54,7 +57,8 @@ const renderCatalog = products => {
 					['alt', `${products.products[i].alt}`],
 					['src', `${products.products[i].image[0]}`],
 					['height', "200"]
-				]);
+				]
+			);
 
 			const nameContainer = createEl (
 				'div',
@@ -69,7 +73,15 @@ const renderCatalog = products => {
 				'priceContainer',
 				productContainer,
 				false,
-				`\$${products.products[i].price}`
+				`\$${products.products[i].price} USD`
+			);
+
+			const quantity = createEl (
+				'div',
+				'quantity',
+				productContainer,
+				false,
+				'Quantity:'
 			);
 
 			const quantityCounter = createEl (
@@ -78,12 +90,12 @@ const renderCatalog = products => {
 				productContainer
 			);
 
-			const plus = createEl (
+			const minus = createEl (
 				'div',
-				'plus',
+				'minus',
 				quantityCounter,
 				false,
-				'+'
+				'−'
 			);
 
 			const quantityInput = createEl (
@@ -91,18 +103,18 @@ const renderCatalog = products => {
 				'quantityInput',
 				quantityCounter,
 				[
-					['type', 'number'],
+					['type', 'text'],
 					['id','quantityInput'],
 					['value', '1']
 				]
 			);
 
-			const minus = createEl (
+			const plus = createEl (
 				'div',
-				'minus',
+				'plus',
 				quantityCounter,
 				false,
-				'-'
+				'+'
 			);
 
 			const addToCart = createEl (
@@ -121,6 +133,9 @@ const renderCatalog = products => {
 				'div',
 				'featuredContainer',
 				domElements.featuredProduct,
+				[
+					['data-id', `${products.products[i].productID}`],
+				]
 			);
 
 			const featuredImage = createEl (
@@ -153,13 +168,40 @@ const renderCatalog = products => {
 				'featuredPriceContainer',
 				detailsContainer,
 				false,
-				`\$${products.products[i].price}`
+				`\$${products.products[i].price} USD`
+			);
+
+			const featuredQuantity = createEl (
+				'div',
+				'featuredQuantity',
+				detailsContainer,
+				false,
+				'Quantity:'
 			);
 
 			const featuredQuantityCounter = createEl (
 				'div',
-				'featuresQuantityCounter',
+				'featuredQuantityCounter',
 				detailsContainer,
+			);
+
+			const featuredMinus = createEl (
+				'div',
+				'featuredMinus',
+				featuredQuantityCounter,
+				false,
+				'−'
+			);
+
+			const featuredQuantityInput = createEl (
+				'input',
+				'featuredQuantityInput',
+				featuredQuantityCounter,
+				[
+					['type', 'text'],
+					['id', 'featuredQuantityInput'],
+					['value', '1']
+				],
 			);
 
 			const featuredPlus = createEl (
@@ -168,25 +210,6 @@ const renderCatalog = products => {
 				featuredQuantityCounter,
 				false,
 				'+'
-			);
-
-			const featuredQuantityInput = createEl (
-				'input',
-				'featuredQuantityInput',
-				featuredQuantityCounter,
-				[
-					['type', 'number'],
-					['id', 'featuredQuantityInput'],
-					['value', '1']
-				],
-			);
-
-			const featuredMinus = createEl (
-				'div',
-				'featuredMinus',
-				featuredQuantityCounter,
-				false,
-				'-'
 			);
 
 			const featuredAddToCart = createEl (

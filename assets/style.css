@@ -4,7 +4,6 @@
 }
 
 body {
-    height: 100vh;
     font-family: roboto, Verdana, Geneva, Tahoma, sans-serif;
     letter-spacing: 0.05em;
     background-color: white;
@@ -27,7 +26,7 @@ a {
 }
 
 .navbar {
-    width: 60vw;
+    width: 60%;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -73,13 +72,14 @@ main {
 }
 
 .main-content {
-    width: 60vw;
+    max-width: 60vw;
 }
 
 .heading {
     font-size: 1.75em;
     letter-spacing: 0.075em;
     margin: calc(1ex / 0.42) 0;
+    color: #00275B;
 }
 
 .featuredProduct {
@@ -212,3 +212,121 @@ footer {
 }
 
 /* products */
+
+.productGallery {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.productContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 3em 1em;
+}
+
+.productImage {
+    filter: drop-shadow(0 10px 5px rgb(189, 188, 188));
+    width: 90%;
+    align-self: center;
+}
+
+.nameContainer {
+    font-size: 0.8em;
+    margin: 2em 0 0.8em 0;
+    letter-spacing: 0.1em;
+    color: #00275B;
+}
+
+.priceContainer {
+    letter-spacing: 0.1em;
+    color: #00275B;
+}
+
+.quantity, .featuredQuantity{
+    font-size: 0.8em;
+    margin: 1.1em 0 0.5em 0;
+    letter-spacing: 0.1em;
+    color: #818080;
+}
+
+.quantityCounter, .featuredQuantityCounter {
+    display: flex;
+    border: 1px solid #00275B;
+    justify-content: space-evenly;
+    margin: 0 0 1em 0;
+    padding: 0.5em 0;
+}
+
+.plus, .minus, .featuredPlus, .featuredMinus{
+    display: flex;
+    justify-content: center;
+    padding: 0 1em;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: #00275B;
+    flex: 1;
+}
+
+.quantityInput, .featuredQuantityInput {
+    border: none;
+    text-align: center;
+    color: #00275B;
+}
+
+.addToCart, .featuredAddToCart {
+    background-color: #00275B;
+    color: white;
+    padding: 0.5em 1.8em;
+    font-size: 1em;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+}
+
+.featuredProduct {
+    display: flex;
+    justify-content: center;
+}
+
+.featuredContainer {
+    display: flex;
+    margin: 4.5em;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.detailsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.featuredNameContainer {
+    font-size: 2.5em;
+    letter-spacing: 0.1em;
+    padding-top: 1em;
+    color: #00275B;
+}
+
+.featuredPriceContainer {
+    font-size: 1.5em;
+    margin: 1em 0 0 0;
+    color: #00275B;
+}
+
+.featuredQuantity {
+    margin-top: 8em;
+}
+
+.featuredQuantityCounter {
+    justify-content: space-between;
+}
+
+.featuredQuantityCounter, .featuredAddToCart {
+    width: 250px;
+}
+
+
+
+
+
+
