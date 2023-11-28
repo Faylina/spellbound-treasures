@@ -9,7 +9,7 @@
                 "./images/mystic_crystal_ball.png"
             ],
             "alt": "00",
-            "amount": 0,
+            "amount": 1,
             "featured": false,
             "totalPrice": 0
         },
@@ -22,7 +22,7 @@
                 "./images/wand_of_enchantments.png"
             ],
             "alt": "00",
-            "amount": 0,
+            "amount": 1,
             "featured": false,
             "totalPrice": 0
         },
@@ -35,7 +35,7 @@
                 "./images/potion_brewing_kit.png"
             ],
             "alt": "00",
-            "amount": 0,
+            "amount": 1,
             "featured": false,
             "totalPrice": 0
         },
@@ -48,7 +48,7 @@
                 "./images/book_of_ancient_spells.png"
             ],
             "alt": "00",
-            "amount": 0,
+            "amount": 1,
             "featured": false,
             "totalPrice": 0
         },
@@ -61,7 +61,7 @@
                 "./images/magical_amulet.png"
             ],
             "alt": "00",
-            "amount": 0,
+            "amount": 1,
             "featured": false,
             "totalPrice": 0
         },
@@ -74,7 +74,7 @@
                 "./images/familiar_companion_plushie.png"
             ],
             "alt": "00",
-            "amount": 0,
+            "amount": 1,
             "featured": false,
             "totalPrice": 0
         },
@@ -87,7 +87,7 @@
                 "./images/enchanted_quill_set.png"
             ],
             "alt": "00",
-            "amount": 0,
+            "amount": 1,
             "featured": false,
             "totalPrice": 0
         },
@@ -100,7 +100,7 @@
                 "./images/grimoire_notebook.png"
             ],
             "alt": "00",
-            "amount": 0,
+            "amount": 1,
             "featured": false,
             "totalPrice": 0
         },
@@ -113,7 +113,7 @@
                 "./images/enchanted_jewelry_box.png"
             ],
             "alt": "00",
-            "amount": 0,
+            "amount": 1,
             "featured": false,
             "totalPrice": 0
         },
@@ -126,7 +126,7 @@
                 "./images/spellcasting_cauldron.png"
             ],
             "alt": "00",
-            "amount": 0,
+            "amount": 1,
             "featured": false,
             "totalPrice": 0
         },
@@ -139,7 +139,7 @@
                 "./images/tarot_card_deck.png"
             ],
             "alt": "00",
-            "amount": 0,
+            "amount": 1,
             "featured": false,
             "totalPrice": 0
         },
@@ -152,7 +152,7 @@
                 "./images/magical_ink_set.png"
             ],
             "alt": "00",
-            "amount": 0,
+            "amount": 1,
             "featured": false,
             "totalPrice": 0
         },
@@ -165,7 +165,7 @@
                 "./images/crystal_wand_display_stand.png"
             ],
             "alt": "00",
-            "amount": 0,
+            "amount": 1,
             "featured": true,
             "totalPrice": 0
         }

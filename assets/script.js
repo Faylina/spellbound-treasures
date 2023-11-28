@@ -4,12 +4,27 @@
 // VARIABLES
 
 const domElements = {};
+const newDOMElements = {};
+let catalogObject = JSON.parse(localStorage.getItem('catalog'));
+let cartObject = JSON.parse(localStorage.getItem('cart'));
+
 
 // FUNCTIONS
 
 const mapDOM = () => {
 	domElements.productGallery = document.querySelector('.productGallery');
 	domElements.featuredProduct = document.querySelector('.featuredProduct');
+}
+
+const mapNewDOM = () => {
+	newDOMElements.plusButtons = Array.from(document.querySelectorAll('.plus')); 
+	newDOMElements.minusButtons = Array.from(document.querySelectorAll('.minus'));  
+	newDOMElements.featuredPlusButton = document.querySelector('.featuredPlus'); 
+	newDOMElements.featuredMinusButton = document.querySelector('.featuredMinus'); 
+	newDOMElements.quantityInput = Array.from(document.querySelectorAll('.quantityInput')); 
+	newDOMElements.featuredQuantityInput = document.querySelector('.featuredQuantityInput');
+	newDOMElements.addToCartButtons = Array.from(document.querySelectorAll('.addToCart'));
+	newDOMElements.featuredAddToCartButton = document.querySelector('.featuredAddToCart');
 }
 
 const createEl = (
@@ -33,7 +48,182 @@ const createEl = (
 
 }
 
-// load product catalog to website
+
+const createEventListeners = () => {
+	newDOMElements.plusButtons.forEach((button) => {
+		button.addEventListener('click', handlePlusClick);
+	});
+	newDOMElements.featuredPlusButton.addEventListener('click', handlePlusClick);
+	newDOMElements.minusButtons.forEach((button) => {
+		button.addEventListener('click', handleMinusClick);
+	});
+	newDOMElements.featuredMinusButton.addEventListener('click', handleMinusClick);
+	newDOMElements.quantityInput.forEach((button) => {
+		button.addEventListener('change', handleAmountChange);
+	});
+	newDOMElements.featuredQuantityInput.addEventListener('change', handleAmountChange);
+	newDOMElements.addToCartButtons.forEach((button) => {
+		button.addEventListener('click', handleAddToCart);
+	});
+	newDOMElements.featuredAddToCartButton.addEventListener('click', handleAddToCart);
+}
+
+const handlePlusClick = (event) => {
+	// find out current product id
+	// find corresponding button 
+	// if data amount of button < 30
+	// data amount of button + 1
+	// value of input field + 1
+	let productIDCurrent = event.target.getAttribute('data-id');
+		for (let button of newDOMElements.addToCartButtons) {
+
+			let currentButtonID = button.getAttribute('data-id');
+	
+			if (currentButtonID == productIDCurrent) {
+
+				let currentButtonAmount = Number(button.getAttribute('data-amount'));
+				if (currentButtonAmount < 30) {
+
+					button.setAttribute('data-amount', currentButtonAmount + 1);
+
+					for (let input of newDOMElements.quantityInput) {
+
+						let currentInputID = input.getAttribute('data-id');
+						if (currentInputID == productIDCurrent) {
+
+							input.setAttribute('value', currentButtonAmount + 1);
+							input.value = currentButtonAmount + 1;
+						}
+					}
+				}
+			} 
+		}
+		
+		const featuredButton = newDOMElements.featuredAddToCartButton;
+		let currentQuantityInput = newDOMElements.featuredQuantityInput;
+		let currentFeaturedID = featuredButton.getAttribute('data-id');
+	
+			if (currentFeaturedID == productIDCurrent) {
+				
+				const currentFeaturedAmount = Number(featuredButton.getAttribute('data-amount'));
+				if (currentFeaturedAmount < 30) {
+
+					featuredButton.setAttribute('data-amount', currentFeaturedAmount + 1);
+
+					currentQuantityInput.setAttribute('value', currentFeaturedAmount + 1);
+					currentQuantityInput.value = currentFeaturedAmount + 1;
+				}
+			}
+}
+
+const handleMinusClick = (event) => {
+	console.log('clicked minus');
+	// find out current product id
+	// find corresponding button 
+	// if data amount of button > 1
+	// data amount of button - 1
+	// value of input field - 1
+	let productIDCurrent = event.target.getAttribute('data-id');
+		for (let button of newDOMElements.addToCartButtons) {
+
+			let currentButtonID = button.getAttribute('data-id');
+	
+			if (currentButtonID == productIDCurrent) {
+
+				let currentButtonAmount = Number(button.getAttribute('data-amount'));
+				if (currentButtonAmount > 1) {
+
+					button.setAttribute('data-amount', currentButtonAmount - 1);
+
+					for (let input of newDOMElements.quantityInput) {
+
+						let currentInputID = input.getAttribute('data-id');
+						if (currentInputID == productIDCurrent) {
+
+							input.setAttribute('value', currentButtonAmount - 1);
+							input.value = currentButtonAmount - 1;
+						}
+					}
+				}
+			} 
+		}
+		
+		const featuredButton = newDOMElements.featuredAddToCartButton;
+		let currentQuantityInput = newDOMElements.featuredQuantityInput;
+		let currentFeaturedID = featuredButton.getAttribute('data-id');
+	
+			if (currentFeaturedID == productIDCurrent) {
+				
+				const currentFeaturedAmount = Number(featuredButton.getAttribute('data-amount'));
+				if (currentFeaturedAmount > 1) {
+
+					featuredButton.setAttribute('data-amount', currentFeaturedAmount - 1);
+
+					currentQuantityInput.setAttribute('value', currentFeaturedAmount - 1);
+					currentQuantityInput.value = currentFeaturedAmount - 1;
+				}
+			}
+}
+
+const handleAmountChange = (event) => {
+
+	let input = Number(event.currentTarget.value);
+
+	if (isNaN(input) || input < 1 || input > 30) {
+		event.currentTarget.value = 1;
+		event.currentTarget.setAttribute('value', '1');
+
+		// find out product id of current product
+		// find the corresponding button
+		// data id of button = 0
+
+		let productIDCurrent = event.target.getAttribute('data-id');
+		for (let button of newDOMElements.addToCartButtons) {
+			let currentButtonID = button.getAttribute('data-id');
+			if (currentButtonID == productIDCurrent) {
+				button.setAttribute('data-amount', "1")
+			} else {
+				let button = newDOMElements.featuredAddToCartButton;
+				button.setAttribute('data-amount', "1")
+			}
+		}
+	
+		alert('Please enter an amount between 1 and 30.');
+
+	} else {
+		// find out product id of current product
+		// find the corresponding button
+		// data id of button = input
+		
+		let productIDCurrent = event.target.getAttribute('data-id');
+		for (let button of newDOMElements.addToCartButtons) {
+			let currentButtonID = button.getAttribute('data-id');
+			if (currentButtonID == productIDCurrent) {
+				button.setAttribute('data-amount', `${input}`)
+				event.currentTarget.setAttribute('value', `${input}`);
+			} else {
+				let button = newDOMElements.featuredAddToCartButton;
+				button.setAttribute('data-amount', `${input}`)
+				event.currentTarget.setAttribute('value', `${input}`);
+			}
+		}
+	}
+}
+
+
+const createCart = (cart) => {
+	if (!localStorage.getItem("cart")) {
+		const emptyCart = [];
+		localStorage.setItem("cart", JSON.stringify(emptyCart));
+	} else {
+		localStorage.setItem("cart", cart);
+	}
+}
+
+
+
+
+// Load product catalog to website
 
 
 const renderCatalog = products => {
@@ -94,7 +284,9 @@ const renderCatalog = products => {
 				'div',
 				'minus',
 				quantityCounter,
-				false,
+				[
+					['data-id', `${products.products[i].productID}`],
+				],
 				'−'
 			);
 
@@ -104,8 +296,9 @@ const renderCatalog = products => {
 				quantityCounter,
 				[
 					['type', 'text'],
-					['id','quantityInput'],
-					['value', '1']
+					['id',`quantityInput${products.products[i].productID}`],
+					['value', '1'],
+					['data-id', `${products.products[i].productID}`],
 				]
 			);
 
@@ -113,7 +306,9 @@ const renderCatalog = products => {
 				'div',
 				'plus',
 				quantityCounter,
-				false,
+				[
+					['data-id', `${products.products[i].productID}`],
+				],
 				'+'
 			);
 
@@ -189,7 +384,9 @@ const renderCatalog = products => {
 				'div',
 				'featuredMinus',
 				featuredQuantityCounter,
-				false,
+				[
+					['data-id', `${products.products[i].productID}`],
+				],
 				'−'
 			);
 
@@ -208,7 +405,9 @@ const renderCatalog = products => {
 				'div',
 				'featuredPlus',
 				featuredQuantityCounter,
-				false,
+				[
+					['data-id', `${products.products[i].productID}`],
+				],
 				'+'
 			);
 
@@ -222,8 +421,15 @@ const renderCatalog = products => {
 				],
 				'Add to cart'
 			);
+			mapNewDOM();
+			createEventListeners();
+			
 		}
 	}
+}
+
+const saveToStorage = (products) => {
+	localStorage.setItem('catalog', JSON.stringify(products));
 }
 
 
@@ -234,6 +440,7 @@ const getProductCatalog = () => {
 		if (xhr.status == 200) {
 			let catalog = JSON.parse(xhr.response);
 			renderCatalog(catalog);
+			saveToStorage(catalog);
 		} else {
 			console.warn(xhr.responseURL, xhr.statusText);
 		}
