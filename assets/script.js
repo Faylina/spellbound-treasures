@@ -175,7 +175,7 @@ const handleAmountChange = (event) => {
 
 		// find out product id of current product
 		// find the corresponding button
-		// data id of button = 0
+		// data id of button = 1
 
 		let productIDCurrent = event.target.getAttribute('data-id');
 		for (let button of newDOMElements.addToCartButtons) {
@@ -210,18 +210,56 @@ const handleAmountChange = (event) => {
 	}
 }
 
-
-const createCart = (cart) => {
+const createCart = () => {
 	if (!localStorage.getItem("cart")) {
 		const emptyCart = [];
 		localStorage.setItem("cart", JSON.stringify(emptyCart));
-	} else {
-		localStorage.setItem("cart", cart);
-	}
+	} 
 }
 
+const handleAddToCart = (event) => {
+	let addedProductID = Number(event.currentTarget.getAttribute('data-id'));
+	let addedProductAmount = Number(event.currentTarget.getAttribute('data-amount'));
+	createCart();
+	let newCart = JSON.parse(localStorage.getItem('cart'));
+	let isAlreadyInTheCart = false;
 
+		if (localStorage.getItem("cart") == "[]") {
+			for (let product of catalogObject.products) {
+				if (product.productID == addedProductID) {
+						newCart.push(product);
+						newCart[newCart.length - 1].amount = addedProductAmount; 
+						localStorage.setItem('cart', JSON.stringify(newCart));
+				}
+			}
+		} else {
+			for (let cartProduct of newCart) {
+				if (cartProduct.productID == addedProductID) {
+					isAlreadyInTheCart = true;
+					break;
+				}
+			}
 
+			if (!isAlreadyInTheCart) {
+				for (let product of catalogObject.products) {
+					if (product.productID == addedProductID) {
+							newCart.push(product);
+							newCart[newCart.length - 1].amount = addedProductAmount; 
+							localStorage.setItem('cart', JSON.stringify(newCart));
+					}
+				}
+			} else {
+				for (let cartProduct of newCart) {
+					if (cartProduct.productID == addedProductID) {
+						cartProduct.amount = cartProduct.amount + addedProductAmount;
+						localStorage.setItem('cart', JSON.stringify(newCart));
+					}
+				}
+			}
+		}
+}
+
+			
 
 // Load product catalog to website
 
@@ -456,7 +494,6 @@ const getProductCatalog = () => {
 const runFunctions = () => {
 	mapDOM(); 
 	getProductCatalog();
-	
 }
 
 runFunctions();
