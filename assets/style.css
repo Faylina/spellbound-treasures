@@ -341,14 +341,13 @@ footer {
     font-size: 1.1em;
     letter-spacing: 0.1em;
     margin: 0.7em 0;
-    width: 250px;
+    width: 300px;
 }
 
 .forgot-password {
     font-size: 0.8em;
     text-decoration: underline;
     align-self: flex-start;
-    margin-left: 21%;
     cursor: pointer;
 }
 

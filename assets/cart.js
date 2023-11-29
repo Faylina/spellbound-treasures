@@ -5,7 +5,6 @@
 
 const domElements = {};
 const newDOMElements = {};
-let catalogObject = JSON.parse(localStorage.getItem('catalog'));
 let cartObject = JSON.parse(localStorage.getItem('cart'));
 
 
@@ -254,11 +253,6 @@ const addNumberToCart = () => {
 		// add class invisible
 		document.querySelector('.cartNumber').classList.add('invisible');
 	}
-}
-
-
-const saveToStorage = (products) => {
-	localStorage.setItem('catalog', JSON.stringify(products));
 }
 
 const renderCart = products => {
