@@ -64,6 +64,29 @@ a {
     color: #00275B;
 }
 
+.icon-list li:last-child {
+    position: relative;
+}
+
+.cartNumber {
+    background-color: #00275B;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 0.7em;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    display: flex;
+}
+
+li .invisible {
+    display: none;
+}
+
 /* body */
 
 main {
@@ -180,6 +203,10 @@ footer {
     text-decoration: underline;
 }
 
+.fullCart {
+    display: none;
+}
+
 /* login */
 
 .login-heading {
@@ -200,7 +227,7 @@ footer {
     font-size: 1.1em;
     letter-spacing: 0.1em;
     margin: 0.7em 0;
-    width: 55%
+    width: 250px;
 }
 
 .forgot-password {

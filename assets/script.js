@@ -217,6 +217,28 @@ const createCart = () => {
 	} 
 }
 
+const addNumberToCart = () => {
+	let numberInCart = 0;
+	let cart = JSON.parse(localStorage.getItem('cart'));
+	let sum = 0;
+
+	for(let product of cart) {
+		sum += Number(product.amount);
+	}
+	
+	numberInCart = sum;
+
+	if (numberInCart > 0) {
+		// remove class invisible
+		document.querySelector('.cartNumber').classList.remove('invisible');
+		document.querySelector('.cartNumber').innerHTML = numberInCart;
+	} else {
+		// add class invisible
+		document.querySelector('.cartNumber').classList.add('invisible');
+	}
+}
+
+
 const handleAddToCart = (event) => {
 	let addedProductID = Number(event.currentTarget.getAttribute('data-id'));
 	let addedProductAmount = Number(event.currentTarget.getAttribute('data-amount'));
@@ -230,6 +252,8 @@ const handleAddToCart = (event) => {
 						newCart.push(product);
 						newCart[newCart.length - 1].amount = addedProductAmount; 
 						localStorage.setItem('cart', JSON.stringify(newCart));
+						addNumberToCart();
+						window.location.href = "../pages/cart.html";
 				}
 			}
 		} else {
@@ -246,6 +270,8 @@ const handleAddToCart = (event) => {
 							newCart.push(product);
 							newCart[newCart.length - 1].amount = addedProductAmount; 
 							localStorage.setItem('cart', JSON.stringify(newCart));
+							addNumberToCart();
+							window.location.href = "../pages/cart.html";
 					}
 				}
 			} else {
@@ -253,6 +279,8 @@ const handleAddToCart = (event) => {
 					if (cartProduct.productID == addedProductID) {
 						cartProduct.amount = cartProduct.amount + addedProductAmount;
 						localStorage.setItem('cart', JSON.stringify(newCart));
+						addNumberToCart();
+						window.location.href = "../pages/cart.html";
 					}
 				}
 			}
@@ -473,7 +501,7 @@ const saveToStorage = (products) => {
 
 const getProductCatalog = () => {
 	const xhr = new XMLHttpRequest();
-	xhr.open('get', './assets/catalog.json');
+	xhr.open('get', '../assets/catalog.json');
 	const parseCatalog = () => {
 		if (xhr.status == 200) {
 			let catalog = JSON.parse(xhr.response);
@@ -494,6 +522,7 @@ const getProductCatalog = () => {
 const runFunctions = () => {
 	mapDOM(); 
 	getProductCatalog();
+	addNumberToCart();
 }
 
 runFunctions();

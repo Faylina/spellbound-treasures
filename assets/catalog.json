@@ -5,8 +5,8 @@
             "productName": "Mystic Crystal Ball",
             "price": 99.99,
             "image": [
-                "./images/mystic_crystal_ball_nb.png",
-                "./images/mystic_crystal_ball.png"
+                "../images/mystic_crystal_ball_nb.png",
+                "../images/mystic_crystal_ball.png"
             ],
             "alt": "00",
             "amount": 1,
@@ -18,8 +18,8 @@
             "productName": "Wand of Enchantments",
             "price": 149.99,
             "image": [
-                "./images/wand_of_enchantments_nb.png",
-                "./images/wand_of_enchantments.png"
+                "../images/wand_of_enchantments_nb.png",
+                "../images/wand_of_enchantments.png"
             ],
             "alt": "00",
             "amount": 1,
@@ -31,8 +31,8 @@
             "productName": "Potion Brewing Kit",
             "price": 59.99,
             "image": [
-                "./images/potion_brewing_kit_nb.png",
-                "./images/potion_brewing_kit.png"
+                "../images/potion_brewing_kit_nb.png",
+                "../images/potion_brewing_kit.png"
             ],
             "alt": "00",
             "amount": 1,
@@ -44,8 +44,8 @@
             "productName": "Book of Ancient Spells",
             "price": 199.99,
             "image": [
-                "./images/book_of_ancient_spells_nb.png",
-                "./images/book_of_ancient_spells.png"
+                "../images/book_of_ancient_spells_nb.png",
+                "../images/book_of_ancient_spells.png"
             ],
             "alt": "00",
             "amount": 1,
@@ -57,8 +57,8 @@
             "productName": "Magical Amulet",
             "price": 79.99,
             "image": [
-                "./images/magical_amulet_nb.png",
-                "./images/magical_amulet.png"
+                "../images/magical_amulet_nb.png",
+                "../images/magical_amulet.png"
             ],
             "alt": "00",
             "amount": 1,
@@ -70,8 +70,8 @@
             "productName": "Familiar Companion Plushie",
             "price": 29.99,
             "image": [
-                "./images/familiar_companion_plushie_nb.png",
-                "./images/familiar_companion_plushie.png"
+                "../images/familiar_companion_plushie_nb.png",
+                "../images/familiar_companion_plushie.png"
             ],
             "alt": "00",
             "amount": 1,
@@ -83,8 +83,8 @@
             "productName": "Enchanted Quill Set",
             "price": 89.99,
             "image": [
-                "./images/enchanted_quill_set_nb.png",
-                "./images/enchanted_quill_set.png"
+                "../images/enchanted_quill_set_nb.png",
+                "../images/enchanted_quill_set.png"
             ],
             "alt": "00",
             "amount": 1,
@@ -96,8 +96,8 @@
             "productName": "Grimoire Notebook",
             "price": 39.99,
             "image": [
-                "./images/grimoire_notebook_nb.png",
-                "./images/grimoire_notebook.png"
+                "../images/grimoire_notebook_nb.png",
+                "../images/grimoire_notebook.png"
             ],
             "alt": "00",
             "amount": 1,
@@ -109,8 +109,8 @@
             "productName": "Enchanted Jewelry Box",
             "price": 129.99,
             "image": [
-                "./images/enchanted_jewelry_box_nb.png",
-                "./images/enchanted_jewelry_box.png"
+                "../images/enchanted_jewelry_box_nb.png",
+                "../images/enchanted_jewelry_box.png"
             ],
             "alt": "00",
             "amount": 1,
@@ -122,8 +122,8 @@
             "productName": "Spellcasting Cauldron",
             "price": 179.99,
             "image": [
-                "./images/spellcasting_cauldron_nb.png",
-                "./images/spellcasting_cauldron.png"
+                "../images/spellcasting_cauldron_nb.png",
+                "../images/spellcasting_cauldron.png"
             ],
             "alt": "00",
             "amount": 1,
@@ -135,8 +135,8 @@
             "productName": "Tarot Card Deck",
             "price": 99.99,
             "image": [
-                "./images/tarot_card_deck_nb.png",
-                "./images/tarot_card_deck.png"
+                "../images/tarot_card_deck_nb.png",
+                "../images/tarot_card_deck.png"
             ],
             "alt": "00",
             "amount": 1,
@@ -148,8 +148,8 @@
             "productName": "Magical Ink Set",
             "price": 79.99,
             "image": [
-                "./images/magical_ink_set_nb.png",
-                "./images/magical_ink_set.png"
+                "../images/magical_ink_set_nb.png",
+                "../images/magical_ink_set.png"
             ],
             "alt": "00",
             "amount": 1,
@@ -161,8 +161,8 @@
             "productName": "Crystal Wand Display Stand",
             "price": 49.99,
             "image": [
-                "./images/crystal_wand_display_stand_nb.png",
-                "./images/crystal_wand_display_stand.png"
+                "../images/crystal_wand_display_stand_nb.png",
+                "../images/crystal_wand_display_stand.png"
             ],
             "alt": "00",
             "amount": 1,
