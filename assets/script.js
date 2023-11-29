@@ -95,7 +95,9 @@ const handlePlusClick = (event) => {
 							input.value = currentButtonAmount + 1;
 						}
 					}
-				}
+				} else {
+                    alert('No more than 30 of each product can be added to the cart.')
+                }
 			} 
 		}
 		
@@ -117,7 +119,6 @@ const handlePlusClick = (event) => {
 }
 
 const handleMinusClick = (event) => {
-	console.log('clicked minus');
 	// find out current product id
 	// find corresponding button 
 	// if data amount of button > 1
@@ -144,7 +145,9 @@ const handleMinusClick = (event) => {
 							input.value = currentButtonAmount - 1;
 						}
 					}
-				}
+				} else {
+                    alert('Please select at least one product to add to the cart.')
+                }
 			} 
 		}
 		

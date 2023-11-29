@@ -25,6 +25,7 @@ const mapNewDOM = () => {
     newDOMElements.quantityInput = Array.from(document.querySelectorAll('.quantityInput'));
     newDOMElements.removeButtons = Array.from(document.querySelectorAll('.remove'));
     newDOMElements.productCards = Array.from(document.querySelectorAll('.productCard'));
+    newDOMElements.subtotalProduct = Array.from(document.querySelectorAll('.subtotalProduct'));
 }
 
 const createEl = (
@@ -114,100 +115,81 @@ const handleRemove = (event) => {
 
 const handlePlusClick = (event) => {
 	// find out current product id
-	// find corresponding button 
-	// if data amount of button < 30
-	// data amount of button + 1
+	// find corresponding product in the cart 
+	// if amount of product < 30
+	// amount of product + 1
 	// value of input field + 1
-	let productIDCurrent = event.target.getAttribute('data-id');
-		for (let button of newDOMElements.addToCartButtons) {
+    // push to storage
 
-			let currentButtonID = button.getAttribute('data-id');
-	
-			if (currentButtonID == productIDCurrent) {
+	let currentID = event.target.getAttribute('data-id');
+    let cartObject = JSON.parse(localStorage.getItem('cart'));
 
-				let currentButtonAmount = Number(button.getAttribute('data-amount'));
-				if (currentButtonAmount < 30) {
+		for (let product of cartObject) {
 
-					button.setAttribute('data-amount', currentButtonAmount + 1);
+            if (product.productID == currentID) {
+                if (product.amount < 30) {
 
-					for (let input of newDOMElements.quantityInput) {
+                    product.amount = product.amount + 1; 
 
-						let currentInputID = input.getAttribute('data-id');
-						if (currentInputID == productIDCurrent) {
+                    for(let input of newDOMElements.quantityInput) {
 
-							input.setAttribute('value', currentButtonAmount + 1);
-							input.value = currentButtonAmount + 1;
-						}
-					}
-				}
-			} 
-		}
-		
-		const featuredButton = newDOMElements.featuredAddToCartButton;
-		let currentQuantityInput = newDOMElements.featuredQuantityInput;
-		let currentFeaturedID = featuredButton.getAttribute('data-id');
-	
-			if (currentFeaturedID == productIDCurrent) {
-				
-				const currentFeaturedAmount = Number(featuredButton.getAttribute('data-amount'));
-				if (currentFeaturedAmount < 30) {
+                        let inputID = input.getAttribute('data-id');
+                        if(inputID == currentID) {
+                            input.setAttribute('value', product.amount);
+							input.value = product.amount;
+                        }
+                    }
 
-					featuredButton.setAttribute('data-amount', currentFeaturedAmount + 1);
+                    showSubtotal(product, currentID);
+                    showTotalPrice(cartObject); 
+                    localStorage.setItem('cart', JSON.stringify(cartObject));
+                    addNumberToCart();
 
-					currentQuantityInput.setAttribute('value', currentFeaturedAmount + 1);
-					currentQuantityInput.value = currentFeaturedAmount + 1;
-				}
-			}
-}
+                } else {
+                    alert('No more than 30 of each product can be added to the cart.')
+                }
+            }
+        }
+    }
 
 const handleMinusClick = (event) => {
-	console.log('clicked minus');
 	// find out current product id
-	// find corresponding button 
-	// if data amount of button > 1
-	// data amount of button - 1
+	// find corresponding product in the cart 
+	// if amount of product > 1
+	// amount of product - 1
 	// value of input field - 1
-	let productIDCurrent = event.target.getAttribute('data-id');
-		for (let button of newDOMElements.addToCartButtons) {
+    // push to storage
 
-			let currentButtonID = button.getAttribute('data-id');
-	
-			if (currentButtonID == productIDCurrent) {
+	let currentID = event.target.getAttribute('data-id');
+    let cartObject = JSON.parse(localStorage.getItem('cart'));
 
-				let currentButtonAmount = Number(button.getAttribute('data-amount'));
-				if (currentButtonAmount > 1) {
+		for (let product of cartObject) {
 
-					button.setAttribute('data-amount', currentButtonAmount - 1);
+            if (product.productID == currentID) {
+                if (product.amount > 1) {
 
-					for (let input of newDOMElements.quantityInput) {
+                    product.amount = product.amount - 1; 
 
-						let currentInputID = input.getAttribute('data-id');
-						if (currentInputID == productIDCurrent) {
+                    for(let input of newDOMElements.quantityInput) {
 
-							input.setAttribute('value', currentButtonAmount - 1);
-							input.value = currentButtonAmount - 1;
-						}
-					}
-				}
-			} 
-		}
-		
-		const featuredButton = newDOMElements.featuredAddToCartButton;
-		let currentQuantityInput = newDOMElements.featuredQuantityInput;
-		let currentFeaturedID = featuredButton.getAttribute('data-id');
-	
-			if (currentFeaturedID == productIDCurrent) {
-				
-				const currentFeaturedAmount = Number(featuredButton.getAttribute('data-amount'));
-				if (currentFeaturedAmount > 1) {
+                        let inputID = input.getAttribute('data-id');
+                        if(inputID == currentID) {
+                            input.setAttribute('value', product.amount);
+							input.value = product.amount;
+                        }
+                    }
 
-					featuredButton.setAttribute('data-amount', currentFeaturedAmount - 1);
+                    showSubtotal(product, currentID);
+                    showTotalPrice(cartObject); 
+                    localStorage.setItem('cart', JSON.stringify(cartObject));
+                    addNumberToCart();
 
-					currentQuantityInput.setAttribute('value', currentFeaturedAmount - 1);
-					currentQuantityInput.value = currentFeaturedAmount - 1;
-				}
-			}
-}
+                } else {
+                    alert('No more than 30 of each product can be added to the cart.')
+                }
+            }
+        }
+    }
 
 const handleAmountChange = (event) => {
 
@@ -217,39 +199,37 @@ const handleAmountChange = (event) => {
 		event.currentTarget.value = 1;
 		event.currentTarget.setAttribute('value', '1');
 
-		// find out product id of current product
-		// find the corresponding button
-		// data id of button = 1
+		// set amount in cartObject
+        let currentID = event.currentTarget.getAttribute('data-id');
 
-		let productIDCurrent = event.target.getAttribute('data-id');
-		for (let button of newDOMElements.addToCartButtons) {
-			let currentButtonID = button.getAttribute('data-id');
-			if (currentButtonID == productIDCurrent) {
-				button.setAttribute('data-amount', "1")
-			} else {
-				let button = newDOMElements.featuredAddToCartButton;
-				button.setAttribute('data-amount', "1")
-			}
-		}
+        for(let product of cartObject) {
+            if(product.productID == currentID) {
+                product.amount = 1;
+                showSubtotal(product, currentID);
+            }
+        }
+        
+        showTotalPrice(cartObject); 
+        localStorage.setItem('cart', JSON.stringify(cartObject)); 
+        addNumberToCart();
 	
 		alert('Please enter an amount between 1 and 30.');
 
 	} else {
 		// find out product id of current product
-		// find the corresponding button
-		// data id of button = input
+		// find the corresponding product in cart
+		// change amount of product in cart
 		
-		let productIDCurrent = event.target.getAttribute('data-id');
-		for (let button of newDOMElements.addToCartButtons) {
-			let currentButtonID = button.getAttribute('data-id');
-			if (currentButtonID == productIDCurrent) {
-				button.setAttribute('data-amount', `${input}`)
-				event.currentTarget.setAttribute('value', `${input}`);
-			} else {
-				let button = newDOMElements.featuredAddToCartButton;
-				button.setAttribute('data-amount', `${input}`)
-				event.currentTarget.setAttribute('value', `${input}`);
-			}
+		let currentID = event.target.getAttribute('data-id');
+		for (let product of cartObject) {
+            if(product.productID == currentID) {
+                product.amount = input;
+                showSubtotal(product, currentID);
+            }
+
+            showTotalPrice(cartObject); 
+            localStorage.setItem('cart', JSON.stringify(cartObject)); 
+            addNumberToCart();
 		}
 	}
 }
@@ -395,8 +375,10 @@ const renderCart = products => {
             'div',
             'subtotalProduct',
             amountPrice,
-            false,
-            `\$${Number(products[i].price) * Number(products[i].amount)}`
+            [
+                ['data-id', `${products[i].productID}`],
+            ],
+            `\$${(Number(products[i].price) * Number(products[i].amount)).toFixed(2)}`
         )
 
         mapNewDOM();
@@ -439,8 +421,17 @@ const showTotalPrice = (products) => {
     totalPrice = totalPrice.toFixed(2);
 
     domElements.subtotal.innerText = `Total: \$${totalPrice}`;
+
 }
 
+const showSubtotal = (product, ID) => {
+    let subtotalPrice = product.price * product.amount
+    for(let price of newDOMElements.subtotalProduct) {
+        if(price.getAttribute('data-id') == ID) {
+            price.innerText = `\$${subtotalPrice.toFixed(2)}`;
+        }
+    }
+}
 
 
 const runFunctions = () => {
