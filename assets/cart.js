@@ -15,14 +15,17 @@ const mapDOM = () => {
 	domElements.cart = document.querySelector('.cart');
     domElements.purchaseButton = document.querySelector('.purchase');
     domElements.subtotal = document.querySelector('.subtotal');
+    domElements.emptyCart = document.querySelector('.cartContent');
+    domElements.FullCart = document.querySelector('.fullCart');
 }
 
 const mapNewDOM = () => {
-    newDOMElements.plusButtons = Array.from(document.querySelectorAll('plus'));
-    newDOMElements.minusButtons = Array.from(document.querySelectorAll('minus'));
-    newDOMElements.quantityInput = Array.from(document.querySelectorAll('quantityInput'));
+    newDOMElements.plusButtons = Array.from(document.querySelectorAll('.plus'));
+    newDOMElements.minusButtons = Array.from(document.querySelectorAll('.minus'));
+    newDOMElements.quantityInput = Array.from(document.querySelectorAll('.quantityInput'));
+    newDOMElements.removeButtons = Array.from(document.querySelectorAll('.remove'));
+    newDOMElements.productCards = Array.from(document.querySelectorAll('.productCard'));
 }
-
 
 const createEl = (
 	type = 'div',
@@ -56,11 +59,56 @@ const createEventListeners = () => {
 	newDOMElements.quantityInput.forEach((button) => {
 		button.addEventListener('change', handleAmountChange);
 	});
+    newDOMElements.removeButtons.forEach((button) => {
+		button.addEventListener('click', handleRemove);
+	});
 	domElements.purchaseButton.addEventListener('click', handlePurchase);
 }
 
 const handlePurchase = (event) => {
 
+}
+
+const handleRemove = (event) => {
+    let removedID = event.currentTarget.getAttribute('data-id');
+    let cartObjectRemove = JSON.parse(localStorage.getItem('cart'));
+    let cartAfterRemoval;
+
+    let checkID = (object) => {
+        return object.productID != removedID;
+    }
+
+    cartAfterRemoval = cartObjectRemove.filter(checkID);
+    
+    localStorage.setItem('cart', JSON.stringify(cartAfterRemoval)); 
+
+    let cartObjectNew = JSON.parse(localStorage.getItem('cart'));
+
+
+    if ((cartObjectNew.length) !== 0) {
+
+        for(let card of newDOMElements.productCards) {
+
+            if (card.getAttribute('data-id') == removedID) {
+                card.remove();
+            }
+        }
+
+        showTotalPrice(cartObjectNew); 
+        addNumberToCart();
+
+    } else {
+        for(let card of newDOMElements.productCards) {
+
+            if (card.getAttribute('data-id') == removedID) {
+                card.remove();
+            }
+        }
+        addNumberToCart();
+        showTotalPrice(cartObjectNew); 
+        document.querySelector('.cartContent').classList.remove('invisibleEmptyCart');
+        document.querySelector('.fullCart').classList.add('invisibleFullCart');
+    }
 }
 
 
@@ -242,6 +290,10 @@ const renderCart = products => {
             'div',
             'productCard',
             domElements.cart,
+            [
+                ['data-id', `${products[i].productID}`],
+            ],
+
         )
 
         const infoContainer = createEl (
@@ -250,7 +302,7 @@ const renderCart = products => {
             productCard,   
         )
 
-        const pruductPicture = createEl (
+        const productPicture = createEl (
             'img',
             'productPicture',
             infoContainer,
@@ -335,6 +387,7 @@ const renderCart = products => {
                 ['src', '../images/trash.png'],
                 ['alt', 'trash can'],
                 ['height', "20"],
+                ['data-id', `${products[i].productID}`],
             ],
         );
 
@@ -367,6 +420,7 @@ const getCart = () => {
 
         renderCart(cartObject);
         showTotalPrice(cartObject); 
+        addNumberToCart();
         
     } 
 }
@@ -382,7 +436,9 @@ const showTotalPrice = (products) => {
         totalPrice += products[i].totalPrice;
     }
 
-    domElements.subtotal.innerText = `Subtotal: \$${totalPrice}`;
+    totalPrice = totalPrice.toFixed(2);
+
+    domElements.subtotal.innerText = `Total: \$${totalPrice}`;
 }
 
 
