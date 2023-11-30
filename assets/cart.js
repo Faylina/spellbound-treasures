@@ -5,6 +5,7 @@
 
 const domElements = {};
 const newDOMElements = {};
+const orders = [];
 let cartObject = JSON.parse(localStorage.getItem('cart'));
 
 
@@ -68,14 +69,49 @@ const createEventListeners = () => {
     domElements.logout.addEventListener('click', handleLogout);
 }
 
+// EVENTHANDLERS
+
 const handlePurchase = (event) => {
 
+    let login = JSON.parse(localStorage.getItem('login'));
+    let cart = JSON.parse(localStorage.getItem('cart'));
+    let orders = JSON.parse(localStorage.getItem('orders'));
+
+    if (login) {
+
+        if(!orders) {
+            orders = [];
+        }
+
+        const newOrder = {
+            cart: cart,
+            user: login
+        }
+
+        orders.push(newOrder);
+
+        localStorage.setItem('orders', JSON.stringify(orders));
+
+        localStorage.removeItem('cart');
+
+        document.querySelector('.cartContent').classList.add('invisibleEmptyCart');
+        document.querySelector('.fullCart').classList.remove('invisibleFullCart');
+
+        addNumberToCart();
+
+        window.location.href = "../pages/thanks.html";
+
+    } else {
+        window.location.href = "../pages/login.html";
+    }
 }
+
 
 const handleLogout = () => {
     localStorage.removeItem('login');
     greetUser();
 }
+
 
 const handleRemove = (event) => {
     let removedID = event.currentTarget.getAttribute('data-id');
@@ -242,25 +278,32 @@ const handleAmountChange = (event) => {
 }
 
 
+// SHOP FUNCTIONS
+
 const addNumberToCart = () => {
 	let numberInCart = 0;
 	let cart = JSON.parse(localStorage.getItem('cart'));
 	let sum = 0;
 
-	for(let product of cart) {
-		sum += Number(product.amount);
-	}
-	
-	numberInCart = sum;
+    if (cart) {
 
-	if (numberInCart > 0) {
-		// remove class invisible
-		document.querySelector('.cartNumber').classList.remove('invisible');
-		document.querySelector('.cartNumber').innerHTML = numberInCart;
-	} else {
-		// add class invisible
-		document.querySelector('.cartNumber').classList.add('invisible');
-	}
+        for(let product of cart) {
+            sum += Number(product.amount);
+        }
+        
+        numberInCart = sum;
+
+        if (numberInCart > 0) {
+            // remove class invisible
+            document.querySelector('.cartNumber').classList.remove('invisible');
+            document.querySelector('.cartNumber').innerHTML = numberInCart;
+        } else {
+            // add class invisible
+            document.querySelector('.cartNumber').classList.add('invisible');
+        }
+    } else {
+        document.querySelector('.cartNumber').classList.add('invisible');
+    }
 }
 
 const renderCart = products => {

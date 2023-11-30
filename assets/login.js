@@ -103,20 +103,25 @@ const addNumberToCart = () => {
 	let cart = JSON.parse(localStorage.getItem('cart'));
 	let sum = 0;
 
-	for(let product of cart) {
-		sum += Number(product.amount);
-	}
-	
-	numberInCart = sum;
+    if (cart) {
 
-	if (numberInCart > 0) {
-		// remove class invisible
-		document.querySelector('.cartNumber').classList.remove('invisible');
-		document.querySelector('.cartNumber').innerHTML = numberInCart;
-	} else {
-		// add class invisible
-		document.querySelector('.cartNumber').classList.add('invisible');
-	}
+        for(let product of cart) {
+            sum += Number(product.amount);
+        }
+        
+        numberInCart = sum;
+
+        if (numberInCart > 0) {
+            // remove class invisible
+            document.querySelector('.cartNumber').classList.remove('invisible');
+            document.querySelector('.cartNumber').innerHTML = numberInCart;
+        } else {
+            // add class invisible
+            document.querySelector('.cartNumber').classList.add('invisible');
+        }
+    } else {
+        document.querySelector('.cartNumber').classList.add('invisible');
+    }
 }
 
 const runFunctions = () => {

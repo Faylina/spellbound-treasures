@@ -44,21 +44,21 @@ const handleRegister = (event) => {
                     customers = [];
                 }
                 
-                    const newUser = {
-                        firstName: domElements.firstName.value,
-                        lastName: domElements.lastName.value,
-                        email: domElements.email.value,
-                        password: domElements.password.value
-                    };
+                const newUser = {
+                    firstName: domElements.firstName.value,
+                    lastName: domElements.lastName.value,
+                    email: domElements.email.value,
+                    password: domElements.password.value
+                };
 
-                    customers.push(newUser);
+                customers.push(newUser);
                     
-                    localStorage.setItem('customers', JSON.stringify(customers));
+                localStorage.setItem('customers', JSON.stringify(customers));
 
-                    window.location.href = "../index.html";
-                } else {
-                    alert('Your email address has already been registered.')
-                }
+                window.location.href = "../index.html";
+            } else {
+                alert('Your email address has already been registered.')
+            }
         } else {
             alert('Please fill out each field.');
         }
@@ -131,20 +131,25 @@ const addNumberToCart = () => {
 	let cart = JSON.parse(localStorage.getItem('cart'));
 	let sum = 0;
 
-	for(let product of cart) {
-		sum += Number(product.amount);
-	}
-	
-	numberInCart = sum;
+    if (cart) {
 
-	if (numberInCart > 0) {
-		// remove class invisible
-		document.querySelector('.cartNumber').classList.remove('invisible');
-		document.querySelector('.cartNumber').innerHTML = numberInCart;
-	} else {
-		// add class invisible
-		document.querySelector('.cartNumber').classList.add('invisible');
-	}
+        for(let product of cart) {
+            sum += Number(product.amount);
+        }
+        
+        numberInCart = sum;
+
+        if (numberInCart > 0) {
+            // remove class invisible
+            document.querySelector('.cartNumber').classList.remove('invisible');
+            document.querySelector('.cartNumber').innerHTML = numberInCart;
+        } else {
+            // add class invisible
+            document.querySelector('.cartNumber').classList.add('invisible');
+        }
+    } else {
+        document.querySelector('.cartNumber').classList.add('invisible');
+    }
 }
 
 
