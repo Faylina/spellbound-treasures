@@ -162,6 +162,10 @@ footer {
     cursor: pointer;
 }
 
+.footerSearch {
+    cursor: pointer;
+}
+
 .disclaimer {
     display: flex;
     flex-direction: column;
@@ -652,7 +656,6 @@ footer {
 }
 
 .starsContainer {
-    color: gold;
     font-size: 24px;
     margin-bottom: 2em;
 }
@@ -663,12 +666,17 @@ footer {
     width: 1em;
     height: 1em;
 }
-   
-.star:before {
-    content: "\2605"; /* Unicode for star symbol */
-    position: absolute;
-    top: 0;
-    left: 0;
+
+.pointer {
+    cursor: pointer;
+}
+
+.gold {
+    color: gold;
+}
+
+.gray {
+    color: gray;
 }
 
 .reviewText {

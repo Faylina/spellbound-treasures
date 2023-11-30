@@ -27,7 +27,11 @@ const mapDOM = () => {
 	domElements.reviewContainer = document.querySelector('.reviewContainer');
 	domElements.cancelReview = document.querySelector('.cancel');
 	domElements.reviewImage = document.querySelector('.reviewImage');
-}
+	domElements.stars = Array.from(document.querySelectorAll('.star'));
+	domElements.submit = document.querySelector('.submit');
+	domElements.inputReview = document.querySelector('#productReview');
+	domElements.footerSearch = document.querySelector('.footerSearch');
+ }
 
 const mapSearchElements = () => {
     newSearchElements.resultCards = Array.from(document.querySelectorAll('.resultCard'));
@@ -94,6 +98,15 @@ const createEventListeners = () => {
 		button.addEventListener('click', handleReview);
 	});
 	domElements.cancelReview.addEventListener('click', handleCancelReview);
+	domElements.stars.forEach((button) => {
+		button.addEventListener('click', handleStarClick);
+	});
+	domElements.stars.forEach((button) => {
+		button.addEventListener('mouseover', handleStarEnter);
+	});
+	domElements.submit.addEventListener('click', handleSubmitReview);
+	domElements.inputReview.addEventListener('change', handleInputReview);
+	domElements.footerSearch.addEventListener('click', handleSearch);
 }
 
 const createEvtFind = () => {
@@ -345,8 +358,169 @@ const handleCancelReview = () => {
 	
 	domElements.reviewContainer.classList.add('invisibleReview');
 	localStorage.removeItem('reviewID');
+	localStorage.removeItem('star-rating');
+	localStorage.removeItem('review');
 }
 
+const handleStarClick = (event) => {
+	let starClick = event.currentTarget.getAttribute('data-number');
+	let stars = domElements.stars;
+	for (let i = 0; i < stars.length; i++) {
+		if ( i > (starClick - 1)) {
+			stars[i].classList.remove('gold');
+			stars[i].classList.add('gray');
+			stars[i].removeEventListener('mouseover', handleStarEnter);
+		} else {
+			stars[i].classList.add('gold');
+			stars[i].classList.remove('gray');
+			stars[i].removeEventListener('mouseover', handleStarEnter);
+		}
+	}
+	localStorage.setItem('star-rating', JSON.stringify(starClick));
+}
+
+const handleStarEnter = (event) => {
+	let starHover = event.currentTarget.getAttribute('data-number');
+	let stars = domElements.stars;
+	for (let i = 0; i < stars.length; i++) {
+		if ( i > (starHover - 1)) {
+			stars[i].classList.remove('gold');
+			stars[i].classList.add('gray');
+		} else {
+			stars[i].classList.add('gold');
+			stars[i].classList.remove('gray');
+		}
+	}
+}
+
+const handleInputReview = (event) => {
+	let input = event.currentTarget.value;
+	localStorage.setItem('review', JSON.stringify(input));
+}
+
+const handleSubmitReview = () => {
+	let reviewID = JSON.parse(localStorage.getItem('reviewID'));
+	let starRating = JSON.parse(localStorage.getItem('star-rating'));
+	let review = JSON.parse(localStorage.getItem('review'));
+	let reviews = JSON.parse(localStorage.getItem('reviews'));
+
+	if (!starRating) {
+		localStorage.setItem('star-rating', JSON.stringify(5));
+	}
+	
+	if(!reviews) {
+		reviews = [];
+	}
+
+	const newReview = {
+		productID: reviewID,
+		starRating: starRating,
+		review: review
+	}
+
+	reviews.push(newReview);
+
+	localStorage.setItem('reviews', JSON.stringify(reviews));
+
+	localStorage.removeItem('reviewID');
+	localStorage.removeItem('star-rating');
+	localStorage.removeItem('review');
+
+	domElements.inputReview.value = '';
+
+	for(let star of domElements.stars) {
+		star.classList.add('gold');
+		star.classList.remove('gray');
+	}
+
+	domElements.reviewContainer.classList.add('invisibleReview');
+}
+
+
+const handleSearchInput = (event) => {
+    let products = JSON.parse(localStorage.getItem('catalog'))
+    let searchTerm = (event.currentTarget.value).toLowerCase(); 
+
+    domElements.searchResults.innerHTML = '';
+
+    if (searchTerm.length > 0) {
+        domElements.resultsContainer.classList.remove('invisibleResults');
+        
+        for (let i = 0; i < products.products.length; i++) {
+
+            let productName = (products.products[i].productName).toLowerCase();
+            if (productName.includes(searchTerm)) {
+
+                const resultCard = createEl (
+                    'div',
+                    'resultCard',
+                    domElements.searchResults,
+                    [
+                        ['data-id', `${products.products[i].productID}`],
+                    ]
+                );
+
+                const searchImage = createEl (
+                    'img',
+                    'searchImage',
+                    resultCard,
+                    [
+                        ['alt', `${products.products[i].alt}`],
+                        ['src', `${products.products[i].image[0]}`],
+                        ['height', "75"]
+                    ]
+                );
+
+                const searchName = createEl (
+                    'div',
+                    'searchName',
+                    resultCard,
+                    false,
+                    `${products.products[i].productName}`
+                );
+
+                mapSearchElements();
+                createEvtFind();
+            }
+        }
+        
+    } else {
+        domElements.resultsContainer.classList.add('invisibleResults');
+    }
+}
+
+const handleScroll = (event) => {
+  
+    domElements.productSearch.classList.add('invisibleSearch');
+
+    let searchID = event.currentTarget.getAttribute('data-id');
+
+    for (let i = 0; i < newDOMElements.productContainers.length; i++) {
+
+        let productID = newDOMElements.productContainers[i].getAttribute('data-id');
+        let product = newDOMElements.productContainers[i];
+
+        if (productID == searchID) {
+
+            product.scrollIntoView();
+
+        } else if (searchID == 13) {
+			newDOMElements.featuredContainer.scrollIntoView();
+		}
+
+		domElements.searchInput.value = '';
+		domElements.resultsContainer.classList.add('invisibleResults');
+    }
+}
+
+const handleSearch = () => {
+    domElements.productSearch.classList.remove('invisibleSearch');
+	domElements.productSearch.scrollIntoView();
+}
+
+const handleClose = () => {
+    domElements.productSearch.classList.add('invisibleSearch');
+}
 
 
 // SHOP FUNCTIONS
@@ -660,91 +834,6 @@ const getProductCatalog = () => {
 	xhr.addEventListener('load', parseCatalog);
 	xhr.send();
 }
-
-const handleSearchInput = (event) => {
-    let products = JSON.parse(localStorage.getItem('catalog'))
-    let searchTerm = (event.currentTarget.value).toLowerCase(); 
-
-    domElements.searchResults.innerHTML = '';
-
-    if (searchTerm.length > 0) {
-        domElements.resultsContainer.classList.remove('invisibleResults');
-        
-        for (let i = 0; i < products.products.length; i++) {
-
-            let productName = (products.products[i].productName).toLowerCase();
-            if (productName.includes(searchTerm)) {
-
-                const resultCard = createEl (
-                    'div',
-                    'resultCard',
-                    domElements.searchResults,
-                    [
-                        ['data-id', `${products.products[i].productID}`],
-                    ]
-                );
-
-                const searchImage = createEl (
-                    'img',
-                    'searchImage',
-                    resultCard,
-                    [
-                        ['alt', `${products.products[i].alt}`],
-                        ['src', `${products.products[i].image[0]}`],
-                        ['height', "75"]
-                    ]
-                );
-
-                const searchName = createEl (
-                    'div',
-                    'searchName',
-                    resultCard,
-                    false,
-                    `${products.products[i].productName}`
-                );
-
-                mapSearchElements();
-                createEvtFind();
-            }
-        }
-        
-    } else {
-        domElements.resultsContainer.classList.add('invisibleResults');
-    }
-}
-
-const handleScroll = (event) => {
-  
-    domElements.productSearch.classList.add('invisibleSearch');
-
-    let searchID = event.currentTarget.getAttribute('data-id');
-
-    for (let i = 0; i < newDOMElements.productContainers.length; i++) {
-
-        let productID = newDOMElements.productContainers[i].getAttribute('data-id');
-        let product = newDOMElements.productContainers[i];
-
-        if (productID == searchID) {
-
-            product.scrollIntoView();
-
-        } else if (searchID == 13) {
-			newDOMElements.featuredContainer.scrollIntoView();
-		}
-
-		domElements.searchInput.value = '';
-		domElements.resultsContainer.classList.add('invisibleResults');
-    }
-}
-
-const handleSearch = () => {
-    domElements.productSearch.classList.remove('invisibleSearch');
-}
-
-const handleClose = () => {
-    domElements.productSearch.classList.add('invisibleSearch');
-}
-
 
 
 // RUN FUNCTIONS
