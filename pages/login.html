@@ -21,11 +21,17 @@
 <body>
     <div class="productSearch invisibleSearch">
         <div class="searchContainer">
-            <input type="text" id="searchInput" placeholder="Search">
+            <div class="dropdown">
+                <input type="text" id="searchInput" placeholder="Search">
+                <div class="resultsContainer invisibleResults">
+                    <div class="dropdownHeading">Products</div>
+                    <hr class="divider">
+                    <div class="searchResults"></div>
+                </div>
+            </div>
             <div class="close">&#9587;</div>
         </div>
         <div class="searchBackground"></div>
-
     </div>
     <header>
         <nav>

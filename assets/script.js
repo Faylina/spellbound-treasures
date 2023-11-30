@@ -5,6 +5,7 @@
 
 const domElements = {};
 const newDOMElements = {};
+const newSearchElements = {};
 let catalogObject = JSON.parse(localStorage.getItem('catalog'));
 let cartObject = JSON.parse(localStorage.getItem('cart'));
 
@@ -16,7 +17,18 @@ const mapDOM = () => {
 	domElements.featuredProduct = document.querySelector('.featuredProduct');
 	domElements.greeting = document.querySelector('.greeting');
 	domElements.logout = document.querySelector('.logout');
+	domElements.search = document.querySelector('.search');
+    domElements.productSearch = document.querySelector('.productSearch');
+    domElements.close = document.querySelector('.close');
+    domElements.searchInput = document.querySelector('#searchInput');
+    domElements.resultsContainer = document.querySelector('.resultsContainer');
+    domElements.searchResults = document.querySelector('.searchResults');
+    domElements.searchBackground = document.querySelector('.searchBackground');
 }
+
+const mapSearchElements = () => {
+    newSearchElements.resultCards = Array.from(document.querySelectorAll('.resultCard'));
+ }
 
 const mapNewDOM = () => {
 	newDOMElements.plusButtons = Array.from(document.querySelectorAll('.plus')); 
@@ -27,6 +39,8 @@ const mapNewDOM = () => {
 	newDOMElements.featuredQuantityInput = document.querySelector('.featuredQuantityInput');
 	newDOMElements.addToCartButtons = Array.from(document.querySelectorAll('.addToCart'));
 	newDOMElements.featuredAddToCartButton = document.querySelector('.featuredAddToCart');
+	newDOMElements.productContainers = Array.from(document.querySelectorAll('.productContainer'));
+	newDOMElements.featuredContainer = document.querySelector('.featuredContainer');
 }
 
 const createEl = (
@@ -47,7 +61,6 @@ const createEl = (
 	if (parent) parent.append(el);
 
 	return el;
-
 }
 
 
@@ -69,6 +82,16 @@ const createEventListeners = () => {
 	});
 	newDOMElements.featuredAddToCartButton.addEventListener('click', handleAddToCart);
 	domElements.logout.addEventListener('click', handleLogout);
+	domElements.search.addEventListener('click', handleSearch);
+    domElements.close.addEventListener('click', handleClose);
+    domElements.searchInput.addEventListener('input', handleSearchInput);
+    domElements.searchBackground.addEventListener('click', handleClose);
+}
+
+const createEvtFind = () => {
+    newSearchElements.resultCards.forEach((button) => {
+		button.addEventListener('click', handleScroll);
+	});
 }
 
 
@@ -93,6 +116,7 @@ const handlePlusClick = (event) => {
 			if (currentButtonID == productIDCurrent) {
 
 				let currentButtonAmount = Number(button.getAttribute('data-amount'));
+
 				if (currentButtonAmount < 30) {
 
 					button.setAttribute('data-amount', currentButtonAmount + 1);
@@ -100,6 +124,7 @@ const handlePlusClick = (event) => {
 					for (let input of newDOMElements.quantityInput) {
 
 						let currentInputID = input.getAttribute('data-id');
+
 						if (currentInputID == productIDCurrent) {
 
 							input.setAttribute('value', currentButtonAmount + 1);
@@ -119,11 +144,13 @@ const handlePlusClick = (event) => {
 			if (currentFeaturedID == productIDCurrent) {
 				
 				const currentFeaturedAmount = Number(featuredButton.getAttribute('data-amount'));
+
 				if (currentFeaturedAmount < 30) {
 
 					featuredButton.setAttribute('data-amount', currentFeaturedAmount + 1);
 
 					currentQuantityInput.setAttribute('value', currentFeaturedAmount + 1);
+
 					currentQuantityInput.value = currentFeaturedAmount + 1;
 				}
 			}
@@ -169,11 +196,13 @@ const handleMinusClick = (event) => {
 			if (currentFeaturedID == productIDCurrent) {
 				
 				const currentFeaturedAmount = Number(featuredButton.getAttribute('data-amount'));
+
 				if (currentFeaturedAmount > 1) {
 
 					featuredButton.setAttribute('data-amount', currentFeaturedAmount - 1);
 
 					currentQuantityInput.setAttribute('value', currentFeaturedAmount - 1);
+
 					currentQuantityInput.value = currentFeaturedAmount - 1;
 				}
 			}
@@ -184,6 +213,7 @@ const handleAmountChange = (event) => {
 	let input = Number(event.currentTarget.value);
 
 	if (isNaN(input) || input < 1 || input > 30) {
+
 		event.currentTarget.value = 1;
 		event.currentTarget.setAttribute('value', '1');
 
@@ -192,11 +222,16 @@ const handleAmountChange = (event) => {
 		// data id of button = 1
 
 		let productIDCurrent = event.target.getAttribute('data-id');
+
 		for (let button of newDOMElements.addToCartButtons) {
+
 			let currentButtonID = button.getAttribute('data-id');
+
 			if (currentButtonID == productIDCurrent) {
 				button.setAttribute('data-amount', "1")
+
 			} else {
+
 				let button = newDOMElements.featuredAddToCartButton;
 				button.setAttribute('data-amount', "1")
 			}
@@ -210,13 +245,20 @@ const handleAmountChange = (event) => {
 		// data id of button = input
 		
 		let productIDCurrent = event.target.getAttribute('data-id');
+
 		for (let button of newDOMElements.addToCartButtons) {
+
 			let currentButtonID = button.getAttribute('data-id');
+
 			if (currentButtonID == productIDCurrent) {
+
 				button.setAttribute('data-amount', `${input}`)
 				event.currentTarget.setAttribute('value', `${input}`);
+
 			} else {
+
 				let button = newDOMElements.featuredAddToCartButton;
+				
 				button.setAttribute('data-amount', `${input}`)
 				event.currentTarget.setAttribute('value', `${input}`);
 			}
@@ -296,11 +338,12 @@ const addNumberToCart = () => {
         numberInCart = sum;
 
         if (numberInCart > 0) {
-            // remove class invisible
+           
             document.querySelector('.cartNumber').classList.remove('invisible');
             document.querySelector('.cartNumber').innerHTML = numberInCart;
+
         } else {
-            // add class invisible
+
             document.querySelector('.cartNumber').classList.add('invisible');
         }
     } else {
@@ -429,6 +472,17 @@ const renderCatalog = products => {
 				],
 				'Add to cart'
 			);
+
+			const writeReview = createEl (
+				'div',
+				'writeReview',
+				productContainer,
+				[
+					['data-id', `${products.products[i].productID}`],
+				],
+				'Write a review'
+			);
+
 		} else {
 
 			const featuredContainer = createEl (
@@ -528,6 +582,17 @@ const renderCatalog = products => {
 				],
 				'Add to cart'
 			);
+
+			const writeReviewFeatured = createEl (
+				'div',
+				'writeReview',
+				detailsContainer,
+				[
+					['data-id', `${products.products[i].productID}`],
+				],
+				'Write a review'
+			);
+
 			mapNewDOM();
 			createEventListeners();
 			
@@ -556,6 +621,90 @@ const getProductCatalog = () => {
 	xhr.send();
 }
 
+const handleSearchInput = (event) => {
+    let products = JSON.parse(localStorage.getItem('catalog'))
+    let searchTerm = (event.currentTarget.value).toLowerCase(); 
+
+    domElements.searchResults.innerHTML = '';
+
+    if (searchTerm.length > 0) {
+        domElements.resultsContainer.classList.remove('invisibleResults');
+        
+        for (let i = 0; i < products.products.length; i++) {
+
+            let productName = (products.products[i].productName).toLowerCase();
+            if (productName.includes(searchTerm)) {
+
+                const resultCard = createEl (
+                    'div',
+                    'resultCard',
+                    domElements.searchResults,
+                    [
+                        ['data-id', `${products.products[i].productID}`],
+                    ]
+                );
+
+                const searchImage = createEl (
+                    'img',
+                    'searchImage',
+                    resultCard,
+                    [
+                        ['alt', `${products.products[i].alt}`],
+                        ['src', `${products.products[i].image[0]}`],
+                        ['height', "75"]
+                    ]
+                );
+
+                const searchName = createEl (
+                    'div',
+                    'searchName',
+                    resultCard,
+                    false,
+                    `${products.products[i].productName}`
+                );
+
+                mapSearchElements();
+                createEvtFind();
+            }
+        }
+        
+    } else {
+        domElements.resultsContainer.classList.add('invisibleResults');
+    }
+}
+
+const handleScroll = (event) => {
+  
+    domElements.productSearch.classList.add('invisibleSearch');
+
+    let searchID = event.currentTarget.getAttribute('data-id');
+
+    for (let i = 0; i < newDOMElements.productContainers.length; i++) {
+
+        let productID = newDOMElements.productContainers[i].getAttribute('data-id');
+        let product = newDOMElements.productContainers[i];
+
+        if (productID == searchID) {
+
+            product.scrollIntoView();
+
+        } else if (searchID == 13) {
+			newDOMElements.featuredContainer.scrollIntoView();
+		}
+
+		domElements.searchInput.value = '';
+		domElements.resultsContainer.classList.add('invisibleResults');
+    }
+}
+
+const handleSearch = () => {
+    domElements.productSearch.classList.remove('invisibleSearch');
+}
+
+const handleClose = () => {
+    domElements.productSearch.classList.add('invisibleSearch');
+}
+
 
 
 // RUN FUNCTIONS
@@ -568,132 +717,3 @@ const runFunctions = () => {
 }
 
 runFunctions();
-
-/*
-	
-
-LOGIN PROMPT (WITH REGISTRATION OR WITHOUT?) - (USER INPUT)
-
-		// account exists
-
-		- create variables for user id and user password (input)
-		- assign change event to input fields
-		- create functions to handle change in user id and password inputs
-			# return input
-		- assign input to respective variables
-
-
-		- assign click/submit event to login button
-		- create function to handle click (form - submit)
-				- if user id input = id in object AND user password = password in object
-						# redirect to cart and display purchased message 
-							(window.location.href = "URL")
-						# create order array
-						# add user id to order array
-						# add cart array to order array
-						# push order array to local storage
-						# clear cart array
-						# replace cart array in storage with new cart array
-						# hide number in cart
-						# hide cart
-						# display empty card
-						# display user name in header
-					- if user input doesn't match
-						# error message
-		
-
-		// account does not exist 
-		
-		- create empty object for user's name and password = login
-		- create variables for user id and user password (input)
-		- assign change event to input fields
-		- create functions to handle change in user id and password inputs
-			# return input
-		- assign input to respective variables
-		
-		- assign click event listener to submit button
-		- create function to handle click event
-			# store name and password in object login
-			# put object login into storage
-			# redirect to cart and display purchased message 
-				(window.location.href = "URL")
-			# create order array
-			# add user id to order array
-			# add cart array to order array
-			# push order array to local storage
-			# clear cart array
-			# replace cart array in storage with new cart array
-			# hide number in cart
-			# hide cart
-			# display empty card
-			# display user name in header
-
-
-	password reset? 
-
-
-PRODUCT SEARCH - (STRING + OBJECT)
-
-	- create click event listener for search button
-	- create function to handle click
-		# toggle visibility of input window
-	
-	- create click event listener for close button
-	- create function to handle click
-		# toggle visibility of input window
-		# empty input field
-
-	- create change event listener for input field
-	- create function to handle input
-		# if input empty
-			# set dropdown to hidden
-		# else
-			# set dropdown to display
-			# for each product in catalog
-				# if input is included in product name
-					# create container div with class + data product id
-					# create div container with class for image
-					# create div container with class for product name
-	
-	- create click event listener for product container
-	- create function for handling click
-		# create variable = data value of container
-		# create variable for div element that has a class = data value of container  
-		# scroll into view 
-		# empty input field
-		# toggle visibility of input window
-	
-
-PRODUCT REVIEWS - (USER INPUT)
-
-	- create empty review object
-
-	- create click event listener for Review
-	- create function to handle click
-				# make review form visible
-
-	- create click event listener for submit button
-	- create function to handle click
-				# pass star rating (index1) to object
-				# pass review to object
-				# pass data of review to object
-				# hide review form
-				# make submitted div visible
-
-	- create click even for close button
-	- create function to handle click
-				# hide submitted div
-
-
-	- create click event listener for stars
-	- create function to handle click
-					# for each star
-						# get index1 of clicked star
-							# for each star till index1
-									# color star
-							# for each star beginning at index1+1 
-									# remove color
-						# disable click
-						# return index1
-
-*/
