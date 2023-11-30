@@ -27,10 +27,10 @@ a {
 }
 
 .navbar {
-    width: 60%;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    flex: 0 1 1200px;
 }
 
 .header-links {
@@ -105,11 +105,15 @@ li .invisible {
 main {
     display: flex;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;
 }
 
 .main-content {
-    max-width: 60vw;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex: 0 1 1200px;
+    justify-content: center;
 }
 
 .heading {
@@ -117,6 +121,7 @@ main {
     letter-spacing: 0.075em;
     margin: calc(1ex / 0.42) 0;
     color: #00275B;
+    flex: 1;
 }
 
 .featuredProduct {
@@ -135,7 +140,7 @@ footer {
 }
 
 .footer-section {
-    width: 60vw;
+    flex: 0 1 1200px;
     display: flex;
     justify-content: space-between;
     margin: calc(1ex / 0.42) 0;
@@ -192,6 +197,7 @@ footer {
     align-items: center;
     justify-content: center;
     color: #00275B;
+    flex: 0 1 1200px;
 }
 
 .cart-heading-empty, .login-heading {
@@ -227,6 +233,7 @@ footer {
     width: 60%;
     margin: 5em;
     flex-direction: column;
+    flex: 0 1 1200px;
 }
 
 .cart-head {
@@ -286,6 +293,7 @@ footer {
 .productCard {
     display: flex;
     margin: 1.5em 0;
+    color: #00275B;
 }
 
 .infoContainer {
@@ -293,6 +301,7 @@ footer {
     width: 50%;
     align-items: center;
     font-size: 1em;
+    flex-wrap: wrap;
 }
 
 .productPicture {
@@ -310,6 +319,7 @@ footer {
     justify-content: space-between;
     width: 50%;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .quantityCounterCart {
@@ -317,6 +327,7 @@ footer {
     border: 1px solid #00275B;
     justify-content: space-evenly;
     padding: 0.5em 0;
+    flex: 0 1 250px;
 }
 
 .remove {
@@ -339,6 +350,10 @@ footer {
 
 
 /* login */
+
+.login-content {
+    flex: 0 1 1200px;
+}
 
 .login-heading {
     margin-bottom: 1em;
@@ -364,7 +379,6 @@ footer {
 .forgot-password {
     font-size: 0.8em;
     text-decoration: underline;
-    align-self: flex-start;
     cursor: pointer;
 }
 
