@@ -7,6 +7,7 @@ body {
     font-family: roboto, Verdana, Geneva, Tahoma, sans-serif;
     letter-spacing: 0.05em;
     background-color: white;
+    position: relative;
 }
 
 /* header */
@@ -478,7 +479,43 @@ footer {
 }
 
 
+/* search */
 
+.productSearch {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
 
+.searchBackground {
+    background-color: rgba(128, 128, 128, 0.7);
+    width: 100vw;
+    height: 85%;
+}
 
+.searchContainer {
+    width: 100vw;
+    height: 15%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.searchInput {
+    width: 80%;
+    height: 40%;
+    margin-right: 1.5em;
+    padding-left: 2em;
+    font-size: 1.1em;
+    letter-spacing: 0.1em;
+}
+
+.close {
+    cursor: pointer;
+}
+
+.invisibleSearch {
+    display: none;
+}

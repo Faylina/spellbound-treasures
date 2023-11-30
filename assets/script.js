@@ -9,7 +9,7 @@ let catalogObject = JSON.parse(localStorage.getItem('catalog'));
 let cartObject = JSON.parse(localStorage.getItem('cart'));
 
 
-// FUNCTIONS
+// GENERAL FUNCTIONS
 
 const mapDOM = () => {
 	domElements.productGallery = document.querySelector('.productGallery');
@@ -70,6 +70,9 @@ const createEventListeners = () => {
 	newDOMElements.featuredAddToCartButton.addEventListener('click', handleAddToCart);
 	domElements.logout.addEventListener('click', handleLogout);
 }
+
+
+// EVENT HANDLERS
 
 const handleLogout = () => {
     localStorage.removeItem('login');
@@ -221,40 +224,6 @@ const handleAmountChange = (event) => {
 	}
 }
 
-const createCart = () => {
-	if (!localStorage.getItem("cart")) {
-		const emptyCart = [];
-		localStorage.setItem("cart", JSON.stringify(emptyCart));
-	} 
-}
-
-const addNumberToCart = () => {
-	let numberInCart = 0;
-	let cart = JSON.parse(localStorage.getItem('cart'));
-	let sum = 0;
-
-    if (cart) {
-
-        for(let product of cart) {
-            sum += Number(product.amount);
-        }
-        
-        numberInCart = sum;
-
-        if (numberInCart > 0) {
-            // remove class invisible
-            document.querySelector('.cartNumber').classList.remove('invisible');
-            document.querySelector('.cartNumber').innerHTML = numberInCart;
-        } else {
-            // add class invisible
-            document.querySelector('.cartNumber').classList.add('invisible');
-        }
-    } else {
-        document.querySelector('.cartNumber').classList.add('invisible');
-    }
-}
-
-
 const handleAddToCart = (event) => {
 	let addedProductID = Number(event.currentTarget.getAttribute('data-id'));
 	let addedProductAmount = Number(event.currentTarget.getAttribute('data-amount'));
@@ -262,7 +231,7 @@ const handleAddToCart = (event) => {
 	let newCart = JSON.parse(localStorage.getItem('cart'));
 	let isAlreadyInTheCart = false;
 
-		if (localStorage.getItem("cart") == "[]") {
+		if (newCart.length == 0) {
 			for (let product of catalogObject.products) {
 				if (product.productID == addedProductID) {
 						newCart.push(product);
@@ -303,7 +272,63 @@ const handleAddToCart = (event) => {
 		}
 }
 
-			
+
+// SHOP FUNCTIONS
+
+const createCart = () => {
+	if (!localStorage.getItem("cart")) {
+		const emptyCart = [];
+		localStorage.setItem("cart", JSON.stringify(emptyCart));
+	} 
+}
+
+const addNumberToCart = () => {
+	let numberInCart = 0;
+	let cart = JSON.parse(localStorage.getItem('cart'));
+	let sum = 0;
+
+    if (cart) {
+
+        for(let product of cart) {
+            sum += Number(product.amount);
+        }
+        
+        numberInCart = sum;
+
+        if (numberInCart > 0) {
+            // remove class invisible
+            document.querySelector('.cartNumber').classList.remove('invisible');
+            document.querySelector('.cartNumber').innerHTML = numberInCart;
+        } else {
+            // add class invisible
+            document.querySelector('.cartNumber').classList.add('invisible');
+        }
+    } else {
+        document.querySelector('.cartNumber').classList.add('invisible');
+    }
+}
+
+const greetUser = () => {
+
+    let login = JSON.parse(localStorage.getItem('login'));
+    let customers = JSON.parse(localStorage.getItem('customers'));
+
+    if (login) {
+        for(let i = 0; i < customers.length; i++) {
+            if (customers[i].email == login) {
+                let name = customers[i].firstName;
+                domElements.greeting.innerHTML = `Hi ${name}!`;
+				document.querySelector('.logout').classList.remove('invisibleLogout');
+                return true;
+            }
+        }
+    } else {
+        domElements.greeting.innerHTML = ''; 
+		document.querySelector('.logout').classList.add('invisibleLogout');
+        return false;
+    }
+}
+
 
 // Load product catalog to website
 
@@ -529,27 +554,6 @@ const getProductCatalog = () => {
 	}
 	xhr.addEventListener('load', parseCatalog);
 	xhr.send();
-}
-
-const greetUser = () => {
-
-    let login = JSON.parse(localStorage.getItem('login'));
-    let customers = JSON.parse(localStorage.getItem('customers'));
-
-    if (login) {
-        for(let i = 0; i < customers.length; i++) {
-            if (customers[i].email == login) {
-                let name = customers[i].firstName;
-                domElements.greeting.innerHTML = `Hi ${name}!`;
-				document.querySelector('.logout').classList.remove('invisibleLogout');
-                return true;
-            }
-        }
-    } else {
-        domElements.greeting.innerHTML = ''; 
-		document.querySelector('.logout').classList.add('invisibleLogout');
-        return false;
-    }
 }
 
 

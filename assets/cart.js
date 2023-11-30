@@ -9,7 +9,7 @@ const orders = [];
 let cartObject = JSON.parse(localStorage.getItem('cart'));
 
 
-// FUNCTIONS
+// GENERAL FUNCTIONS
 
 const mapDOM = () => {
 	domElements.cart = document.querySelector('.cart');
@@ -69,7 +69,7 @@ const createEventListeners = () => {
     domElements.logout.addEventListener('click', handleLogout);
 }
 
-// EVENTHANDLERS
+// EVENT HANDLERS
 
 const handlePurchase = (event) => {
 
@@ -499,6 +499,7 @@ const greetUser = () => {
     }
 }
 
+// RUN FUNCTIONS
 
 const runFunctions = () => {
 	mapDOM(); 

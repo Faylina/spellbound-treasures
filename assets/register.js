@@ -4,7 +4,7 @@
 let customers = JSON.parse(localStorage.getItem('customers'));
 const domElements = {};
 
-// FUNCTIONS
+// GENERAL FUNCTIONS
 
 const mapDOM = () => {
     domElements.register = document.querySelector('.login-button');
@@ -20,6 +20,8 @@ const createEventListeners = () => {
     domElements.register.addEventListener('click', handleRegister);
     domElements.logout.addEventListener('click', handleLogout);
 }
+
+// EVENTHANDLERS
 
 const handleLogout = () => {
     localStorage.removeItem('login');
@@ -66,6 +68,8 @@ const handleRegister = (event) => {
         alert('Not a valid email-address.');
     }
 }
+
+// SHOP FUNCTIONS
 
 const checkEmail = () => {
     let email = domElements.email.value;
@@ -151,6 +155,8 @@ const addNumberToCart = () => {
         document.querySelector('.cartNumber').classList.add('invisible');
     }
 }
+
+// RUN FUNCTIONS
 
 
 const runFunctions = () => {

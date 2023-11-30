@@ -5,7 +5,7 @@ let customers = JSON.parse(localStorage.getItem('customers'));
 const domElements = {};
 
 
-// FUNCTIONS
+// GENERAL FUNCTIONS
 
 const mapDOM = () => {
     domElements.login = document.querySelector('.login-button');
@@ -19,6 +19,8 @@ const createEventListeners = () => {
     domElements.login.addEventListener('click', handleLogin);
     domElements.logout.addEventListener('click', handleLogout);
 }
+
+// EVENT HANDLERS
 
 const handleLogout = () => {
     localStorage.removeItem('login');
@@ -47,6 +49,8 @@ const handleLogin = (event) => {
         alert("You're already logged in. :)");
     }
 }
+
+// SHOP FUNCTIONS
 
 const checkLogin = () => {
     let login = JSON.parse(localStorage.getItem('login'));
@@ -123,6 +127,8 @@ const addNumberToCart = () => {
         document.querySelector('.cartNumber').classList.add('invisible');
     }
 }
+
+// RUN FUNCTIONS
 
 const runFunctions = () => {
 	mapDOM(); 

@@ -8,6 +8,8 @@
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico"> 
     <link rel="stylesheet" href="../assets/style.css">
     <script src="../assets/register.js" defer></script>
+    <script src="../assets/getcatalog.js" defer></script>
+    <script src="../assets/productsearch.js" defer></script>
 
     <!--Google Fonts-->
 
@@ -17,6 +19,14 @@
     
 </head>
 <body>
+    <div class="productSearch invisibleSearch">
+        <div class="searchContainer">
+            <input type="text" id="searchInput" placeholder="Search">
+            <div class="close">&#9587;</div>
+        </div>
+        <div class="searchBackground"></div>
+
+    </div>
     <header>
         <nav>
             <div class="navbar">
@@ -35,7 +45,7 @@
                     <div>
                         <ul class="icon-list">
                             <li>
-                                <img src="../images/search.png" alt="search icon" height="20">
+                                <img class="search" src="../images/search.png" alt="search icon" height="20">
                             </li>
                             <li>
                                 <a href="../pages/login.html">
