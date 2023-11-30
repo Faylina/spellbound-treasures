@@ -9,20 +9,52 @@ const domElements = {};
 
 const mapDOM = () => {
     domElements.login = document.querySelector('.login-button');
-    domElements.email = document.querySelector('.login-email');
-    domElements.password = document.querySelector('.login-password');
+    domElements.email = document.querySelector('#login-email');
+    domElements.password = document.querySelector('#login-password');
+    domElements.greeting = document.querySelector('.greeting');
+    domElements.logout = document.querySelector('.logout');
 }
 
 const createEventListeners = () => {
     domElements.login.addEventListener('click', handleLogin);
+    domElements.logout.addEventListener('click', handleLogout);
 }
 
-const handleLogin = () => {
-    let userExists = checkUser();
-    if(userExists === true) {
+const handleLogout = () => {
+    localStorage.removeItem('login');
+    greetUser();
+}
 
+const handleLogin = (event) => {
+    event.preventDefault();
+
+    let userExists = checkUser();
+    let loggedIn = checkLogin();
+
+    if (loggedIn === false) {
+        if (userExists === true) {
+
+            let email = domElements.email.value; 
+
+            localStorage.setItem('login', JSON.stringify(email));
+
+            window.location.href = "../index.html";
+
+        } else {
+            alert('Wrong email or password.');
+        }
     } else {
-        alert('Wrong email or password.');
+        alert("You're already logged in. :)");
+    }
+}
+
+const checkLogin = () => {
+    let login = JSON.parse(localStorage.getItem('login'));
+
+    if (login) {
+        return true;
+    } else {
+        return false;
     }
 }
 
@@ -45,9 +77,31 @@ const checkUser = () => {
     return false;
 }
 
+const greetUser = () => {
+
+    let login = JSON.parse(localStorage.getItem('login'));
+    let customers = JSON.parse(localStorage.getItem('customers'));
+
+    if (login) {
+        for(let i = 0; i < customers.length; i++) {
+            if (customers[i].email == login) {
+                let name = customers[i].firstName;
+                domElements.greeting.innerHTML = `Hi ${name}!`;
+                document.querySelector('.logout').classList.remove('invisibleLogout');
+                return true;
+            }
+        }
+    } else {
+        domElements.greeting.innerHTML = ''; 
+        document.querySelector('.logout').classList.add('invisibleLogout');
+        return false;
+    }
+}
+
 const runFunctions = () => {
 	mapDOM(); 
     createEventListeners();
+    greetUser();
 }
 
 runFunctions();

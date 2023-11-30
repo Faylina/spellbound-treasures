@@ -16,6 +16,8 @@ const mapDOM = () => {
     domElements.subtotal = document.querySelector('.subtotal');
     domElements.emptyCart = document.querySelector('.cartContent');
     domElements.FullCart = document.querySelector('.fullCart');
+    domElements.greeting = document.querySelector('.greeting');
+    domElements.logout = document.querySelector('.logout');
 }
 
 const mapNewDOM = () => {
@@ -63,10 +65,16 @@ const createEventListeners = () => {
 		button.addEventListener('click', handleRemove);
 	});
 	domElements.purchaseButton.addEventListener('click', handlePurchase);
+    domElements.logout.addEventListener('click', handleLogout);
 }
 
 const handlePurchase = (event) => {
 
+}
+
+const handleLogout = () => {
+    localStorage.removeItem('login');
+    greetUser();
 }
 
 const handleRemove = (event) => {
@@ -427,11 +435,33 @@ const showSubtotal = (product, ID) => {
     }
 }
 
+const greetUser = () => {
+
+    let login = JSON.parse(localStorage.getItem('login'));
+    let customers = JSON.parse(localStorage.getItem('customers'));
+
+    if (login) {
+        for(let i = 0; i < customers.length; i++) {
+            if (customers[i].email == login) {
+                let name = customers[i].firstName;
+                domElements.greeting.innerHTML = `Hi ${name}!`;
+                document.querySelector('.logout').classList.remove('invisibleLogout');
+                return true;
+            }
+        }
+    } else {
+        domElements.greeting.innerHTML = ''; 
+        document.querySelector('.logout').classList.add('invisibleLogout');
+        return false;
+    }
+}
+
 
 const runFunctions = () => {
 	mapDOM(); 
 	getCart();
 	addNumberToCart();
+    greetUser();
 }
 
 runFunctions();

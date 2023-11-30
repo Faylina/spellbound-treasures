@@ -12,10 +12,18 @@ const mapDOM = () => {
     domElements.lastName = document.querySelector('#lastName');
     domElements.email = document.querySelector('#loginEmail');
     domElements.password = document.querySelector('#loginPassword');
+    domElements.greeting = document.querySelector('.greeting');
+    domElements.logout = document.querySelector('.logout');
 }
 
 const createEventListeners = () => {
     domElements.register.addEventListener('click', handleRegister);
+    domElements.logout.addEventListener('click', handleLogout);
+}
+
+const handleLogout = () => {
+    localStorage.removeItem('login');
+    greetUser();
 }
 
 const handleRegister = (event) => {
@@ -97,11 +105,32 @@ const checkUser = () => {
     return false;
 }
 
+const greetUser = () => {
+
+    let login = JSON.parse(localStorage.getItem('login'));
+    let customers = JSON.parse(localStorage.getItem('customers'));
+
+    if (login) {
+        for(let i = 0; i < customers.length; i++) {
+            if (customers[i].email == login) {
+                let name = customers[i].firstName;
+                domElements.greeting.innerHTML = `Hi ${name}!`;
+                document.querySelector('.logout').classList.remove('invisibleLogout');
+                return true;
+            }
+        }
+    } else {
+        domElements.greeting.innerHTML = ''; 
+        document.querySelector('.logout').classList.add('invisibleLogout');
+        return false;
+    }
+}
+
 
 const runFunctions = () => {
 	mapDOM(); 
     createEventListeners();
-	
+	greetUser();
 }
 
 runFunctions();

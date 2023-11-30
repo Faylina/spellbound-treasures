@@ -14,6 +14,8 @@ let cartObject = JSON.parse(localStorage.getItem('cart'));
 const mapDOM = () => {
 	domElements.productGallery = document.querySelector('.productGallery');
 	domElements.featuredProduct = document.querySelector('.featuredProduct');
+	domElements.greeting = document.querySelector('.greeting');
+	domElements.logout = document.querySelector('.logout');
 }
 
 const mapNewDOM = () => {
@@ -66,6 +68,12 @@ const createEventListeners = () => {
 		button.addEventListener('click', handleAddToCart);
 	});
 	newDOMElements.featuredAddToCartButton.addEventListener('click', handleAddToCart);
+	domElements.logout.addEventListener('click', handleLogout);
+}
+
+const handleLogout = () => {
+    localStorage.removeItem('login');
+    greetUser();
 }
 
 const handlePlusClick = (event) => {
@@ -518,6 +526,27 @@ const getProductCatalog = () => {
 	xhr.send();
 }
 
+const greetUser = () => {
+
+    let login = JSON.parse(localStorage.getItem('login'));
+    let customers = JSON.parse(localStorage.getItem('customers'));
+
+    if (login) {
+        for(let i = 0; i < customers.length; i++) {
+            if (customers[i].email == login) {
+                let name = customers[i].firstName;
+                domElements.greeting.innerHTML = `Hi ${name}!`;
+				document.querySelector('.logout').classList.remove('invisibleLogout');
+                return true;
+            }
+        }
+    } else {
+        domElements.greeting.innerHTML = ''; 
+		document.querySelector('.logout').classList.add('invisibleLogout');
+        return false;
+    }
+}
+
 
 
 // RUN FUNCTIONS
@@ -526,6 +555,7 @@ const runFunctions = () => {
 	mapDOM(); 
 	getProductCatalog();
 	addNumberToCart();
+	greetUser();
 }
 
 runFunctions();

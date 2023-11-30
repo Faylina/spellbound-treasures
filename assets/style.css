@@ -60,8 +60,20 @@ a {
     display: flex;
     margin-left: auto;
     margin-right: 30px;
-    font-size: 1.5em;
+    font-size: 1em;
     color: #00275B;
+}
+
+.logout {
+    margin-right: 30px;
+    font-size: 1em;
+    color: #00275B;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+div .invisibleLogout {
+    display: none;
 }
 
 .icon-list li:last-child {
