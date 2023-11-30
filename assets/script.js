@@ -49,6 +49,8 @@ const mapNewDOM = () => {
 	newDOMElements.productContainers = Array.from(document.querySelectorAll('.productContainer'));
 	newDOMElements.featuredContainer = document.querySelector('.featuredContainer');
 	newDOMElements.writeReview = Array.from(document.querySelectorAll('.writeReview'));
+	newDOMElements.productImages = Array.from(document.querySelectorAll('.productImage'));
+	newDOMElements.featuredImage = document.querySelector('.featuredImage');
 }
 
 const createEl = (
@@ -107,6 +109,14 @@ const createEventListeners = () => {
 	domElements.submit.addEventListener('click', handleSubmitReview);
 	domElements.inputReview.addEventListener('change', handleInputReview);
 	domElements.footerSearch.addEventListener('click', handleSearch);
+	newDOMElements.productImages.forEach((button) => {
+		button.addEventListener('mouseover', handleEnterImage);
+	});
+	newDOMElements.productImages.forEach((button) => {
+		button.addEventListener('mouseout', handleLeaveImage);
+	});
+	newDOMElements.featuredImage.addEventListener('mouseover', handleEnterImage);
+	newDOMElements.featuredImage.addEventListener('mouseout', handleLeaveImage);
 }
 
 const createEvtFind = () => {
@@ -522,6 +532,37 @@ const handleClose = () => {
     domElements.productSearch.classList.add('invisibleSearch');
 }
 
+const handleEnterImage = (event) => {
+
+	let currentID = event.currentTarget.getAttribute('data-id');
+	let catalog = JSON.parse(localStorage.getItem('catalog'));
+	
+	for (let i = 0; i < catalog.products.length; i++) {
+
+		let productID = catalog.products[i].productID;
+
+		if (productID == currentID) {
+			let imagePath = catalog.products[i].image[1];
+			event.currentTarget.setAttribute('src', imagePath);
+		}
+	}
+}
+
+const handleLeaveImage = (event) => {
+	let currentID = event.currentTarget.getAttribute('data-id');
+	let catalog = JSON.parse(localStorage.getItem('catalog'));
+	
+	for (let i = 0; i < catalog.products.length; i++) {
+
+		let productID = catalog.products[i].productID;
+
+		if (productID == currentID) {
+			let imagePath = catalog.products[i].image[0];
+			event.currentTarget.setAttribute('src', imagePath);
+		}
+	}
+}
+
 
 // SHOP FUNCTIONS
 
@@ -604,7 +645,8 @@ const renderCatalog = products => {
 				[
 					['alt', `${products.products[i].alt}`],
 					['src', `${products.products[i].image[0]}`],
-					['height', "200"]
+					['height', "200"],
+					['data-id', `${products.products[i].productID}`],
 				]
 			);
 
@@ -709,7 +751,8 @@ const renderCatalog = products => {
 				[
 					['alt', `${products.products[i].alt}`],
 					['src', `${products.products[i].image[0]}`],
-					['height', '450']
+					['height', '450'],
+					['data-id', `${products.products[i].productID}`],
 				],
 			);
 

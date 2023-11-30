@@ -465,6 +465,11 @@ footer {
     justify-content: center;
 }
 
+.featuredImage {
+    filter: drop-shadow(0 10px 5px rgb(189, 188, 188));
+    margin-right: 25px;
+}
+
 .detailsContainer {
     display: flex;
     flex-direction: column;
