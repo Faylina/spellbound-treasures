@@ -24,6 +24,9 @@ const mapDOM = () => {
     domElements.resultsContainer = document.querySelector('.resultsContainer');
     domElements.searchResults = document.querySelector('.searchResults');
     domElements.searchBackground = document.querySelector('.searchBackground');
+	domElements.reviewContainer = document.querySelector('.reviewContainer');
+	domElements.cancelReview = document.querySelector('.cancel');
+	domElements.reviewImage = document.querySelector('.reviewImage');
 }
 
 const mapSearchElements = () => {
@@ -41,6 +44,7 @@ const mapNewDOM = () => {
 	newDOMElements.featuredAddToCartButton = document.querySelector('.featuredAddToCart');
 	newDOMElements.productContainers = Array.from(document.querySelectorAll('.productContainer'));
 	newDOMElements.featuredContainer = document.querySelector('.featuredContainer');
+	newDOMElements.writeReview = Array.from(document.querySelectorAll('.writeReview'));
 }
 
 const createEl = (
@@ -86,6 +90,10 @@ const createEventListeners = () => {
     domElements.close.addEventListener('click', handleClose);
     domElements.searchInput.addEventListener('input', handleSearchInput);
     domElements.searchBackground.addEventListener('click', handleClose);
+	newDOMElements.writeReview.forEach((button) => {
+		button.addEventListener('click', handleReview);
+	});
+	domElements.cancelReview.addEventListener('click', handleCancelReview);
 }
 
 const createEvtFind = () => {
@@ -96,11 +104,6 @@ const createEvtFind = () => {
 
 
 // EVENT HANDLERS
-
-const handleLogout = () => {
-    localStorage.removeItem('login');
-    greetUser();
-}
 
 const handlePlusClick = (event) => {
 	// find out current product id
@@ -313,6 +316,37 @@ const handleAddToCart = (event) => {
 			}
 		}
 }
+
+
+
+const handleLogout = () => {
+    localStorage.removeItem('login');
+    greetUser();
+}
+
+
+const handleReview = (event) => {
+	
+	let currentID = event.currentTarget.getAttribute('data-id');
+	localStorage.setItem('reviewID', JSON.stringify(currentID));
+
+	for (let i = 0; i < catalogObject.products.length; i++) {
+		let product = catalogObject.products[i];
+
+		if (product.productID == currentID) {
+			domElements.reviewImage.setAttribute('src', `${product.image[1]}`);
+		}
+	}
+
+	domElements.reviewContainer.classList.remove('invisibleReview');
+}
+
+const handleCancelReview = () => {
+	
+	domElements.reviewContainer.classList.add('invisibleReview');
+	localStorage.removeItem('reviewID');
+}
+
 
 
 // SHOP FUNCTIONS
@@ -583,10 +617,16 @@ const renderCatalog = products => {
 				'Add to cart'
 			);
 
+			const reviewFeaturedContainer = createEl (
+				'div',
+				'reviewFeaturedContainer',
+				detailsContainer,
+			)
+
 			const writeReviewFeatured = createEl (
 				'div',
 				'writeReview',
-				detailsContainer,
+				reviewFeaturedContainer,
 				[
 					['data-id', `${products.products[i].productID}`],
 				],
