@@ -1,6 +1,7 @@
 'use strict';
 
 // VARIABLES
+
 let customers = JSON.parse(localStorage.getItem('customers'));
 const domElements = {};
 
@@ -21,7 +22,7 @@ const createEventListeners = () => {
     domElements.logout.addEventListener('click', handleLogout);
 }
 
-// EVENTHANDLERS
+// EVENT HANDLERS
 
 const handleLogout = () => {
     localStorage.removeItem('login');
@@ -29,8 +30,6 @@ const handleLogout = () => {
 }
 
 const handleRegister = (event) => {
-    // transfer data to customers
-    // log to localStorage 
 
     event.preventDefault();
     let emailCheck = checkEmail();
@@ -56,6 +55,10 @@ const handleRegister = (event) => {
                 customers.push(newUser);
                     
                 localStorage.setItem('customers', JSON.stringify(customers));
+
+                localStorage.setItem('login', JSON.stringify(domElements.email.value));
+
+                greetUser();
 
                 window.location.href = "../index.html";
             } else {
@@ -144,11 +147,12 @@ const addNumberToCart = () => {
         numberInCart = sum;
 
         if (numberInCart > 0) {
-            // remove class invisible
+            
             document.querySelector('.cartNumber').classList.remove('invisible');
             document.querySelector('.cartNumber').innerHTML = numberInCart;
+            
         } else {
-            // add class invisible
+            
             document.querySelector('.cartNumber').classList.add('invisible');
         }
     } else {

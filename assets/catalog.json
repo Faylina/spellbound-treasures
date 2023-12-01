@@ -8,7 +8,7 @@
                 "../images/mystic_crystal_ball_nb.png",
                 "../images/mystic_crystal_ball.png"
             ],
-            "alt": "00",
+            "alt": "an unclear crystal ball on an ornate stand with hanging red crystals, standing on red satin cloth, surrounded by other similar trinkets",
             "amount": 1,
             "featured": false,
             "totalPrice": 0
@@ -21,7 +21,7 @@
                 "../images/wand_of_enchantments_nb.png",
                 "../images/wand_of_enchantments.png"
             ],
-            "alt": "00",
+            "alt": "an ornate magical teal wand with a blue crystal ball on its tip, adorned with gold, a lush green coast in the background",
             "amount": 1,
             "featured": false,
             "totalPrice": 0
@@ -34,7 +34,7 @@
                 "../images/potion_brewing_kit_nb.png",
                 "../images/potion_brewing_kit.png"
             ],
-            "alt": "00",
+            "alt": "a potion set consisting of vials of different sizes and a decanter, containing different mystical looking substances, arranged on a wooden table with different small trinkets",
             "amount": 1,
             "featured": false,
             "totalPrice": 0
@@ -47,7 +47,7 @@
                 "../images/book_of_ancient_spells_nb.png",
                 "../images/book_of_ancient_spells.png"
             ],
-            "alt": "00",
+            "alt": "an ancient-looking open book, lying on a small table, surrounded by trinkets and candles",
             "amount": 1,
             "featured": false,
             "totalPrice": 0
@@ -60,7 +60,7 @@
                 "../images/magical_amulet_nb.png",
                 "../images/magical_amulet.png"
             ],
-            "alt": "00",
+            "alt": "metal ornate amulet with a mystical green and polished crystal set in the middle, draped over a wooden log",
             "amount": 1,
             "featured": false,
             "totalPrice": 0
@@ -73,7 +73,7 @@
                 "../images/familiar_companion_plushie_nb.png",
                 "../images/familiar_companion_plushie.png"
             ],
-            "alt": "00",
+            "alt": "plushie of a mystically looking creature, resembling a cat, sitting on a human's hand, with logs and plants in the background",
             "amount": 1,
             "featured": false,
             "totalPrice": 0
@@ -86,7 +86,7 @@
                 "../images/enchanted_quill_set_nb.png",
                 "../images/enchanted_quill_set.png"
             ],
-            "alt": "00",
+            "alt": "ornate feather quills, arranged on books on a table, surrounded by a pumpkin and fall leaves",
             "amount": 1,
             "featured": false,
             "totalPrice": 0
@@ -99,7 +99,7 @@
                 "../images/grimoire_notebook_nb.png",
                 "../images/grimoire_notebook.png"
             ],
-            "alt": "00",
+            "alt": "ornate, closed book with a dark red back and mystically glowing red crystals embedded in the cover, lying on a table surrounded by papers and trinkets",
             "amount": 1,
             "featured": false,
             "totalPrice": 0
@@ -112,7 +112,7 @@
                 "../images/enchanted_jewelry_box_nb.png",
                 "../images/enchanted_jewelry_box.png"
             ],
-            "alt": "00",
+            "alt": "open ornate and golden jewelry box, standing on a table and containing gold and pearl jewelry",
             "amount": 1,
             "featured": false,
             "totalPrice": 0
@@ -125,7 +125,7 @@
                 "../images/spellcasting_cauldron_nb.png",
                 "../images/spellcasting_cauldron.png"
             ],
-            "alt": "00",
+            "alt": "a magical cauldron, containing bubbling water that is spilling over, standing on a wooden log outside in the woods",
             "amount": 1,
             "featured": false,
             "totalPrice": 0
@@ -138,7 +138,7 @@
                 "../images/tarot_card_deck_nb.png",
                 "../images/tarot_card_deck.png"
             ],
-            "alt": "00",
+            "alt": "a deck of tarot cards, displaying different medieval looking people, arranged on a wooden table and surrounded by other trinkets",
             "amount": 1,
             "featured": false,
             "totalPrice": 0
@@ -151,7 +151,7 @@
                 "../images/magical_ink_set_nb.png",
                 "../images/magical_ink_set.png"
             ],
-            "alt": "00",
+            "alt": "an assortment of vials of different sizes, containing inks of different colors, standing on a dark blue surface, colorful powders spilled around them",
             "amount": 1,
             "featured": false,
             "totalPrice": 0
@@ -164,7 +164,7 @@
                 "../images/crystal_wand_display_stand_nb.png",
                 "../images/crystal_wand_display_stand.png"
             ],
-            "alt": "00",
+            "alt": "a wooden ornate stand, standing on a table and holding five crystal wands in different colors and one crystal ball",
             "amount": 1,
             "featured": true,
             "totalPrice": 0

@@ -129,11 +129,7 @@ const createEvtFind = () => {
 // EVENT HANDLERS
 
 const handlePlusClick = (event) => {
-	// find out current product id
-	// find corresponding button 
-	// if data amount of button < 30
-	// data amount of button + 1
-	// value of input field + 1
+	
 	let productIDCurrent = event.target.getAttribute('data-id');
 		for (let button of newDOMElements.addToCartButtons) {
 
@@ -183,11 +179,7 @@ const handlePlusClick = (event) => {
 }
 
 const handleMinusClick = (event) => {
-	// find out current product id
-	// find corresponding button 
-	// if data amount of button > 1
-	// data amount of button - 1
-	// value of input field - 1
+
 	let productIDCurrent = event.target.getAttribute('data-id');
 		for (let button of newDOMElements.addToCartButtons) {
 
@@ -243,10 +235,6 @@ const handleAmountChange = (event) => {
 		event.currentTarget.value = 1;
 		event.currentTarget.setAttribute('value', '1');
 
-		// find out product id of current product
-		// find the corresponding button
-		// data id of button = 1
-
 		let productIDCurrent = event.target.getAttribute('data-id');
 
 		for (let button of newDOMElements.addToCartButtons) {
@@ -266,9 +254,6 @@ const handleAmountChange = (event) => {
 		alert('Please enter an amount between 1 and 30.');
 
 	} else {
-		// find out product id of current product
-		// find the corresponding button
-		// data id of button = input
 		
 		let productIDCurrent = event.target.getAttribute('data-id');
 
@@ -298,6 +283,7 @@ const handleAddToCart = (event) => {
 	createCart();
 	let newCart = JSON.parse(localStorage.getItem('cart'));
 	let isAlreadyInTheCart = false;
+	let catalogObject = JSON.parse(localStorage.getItem('catalog'));
 
 		if (newCart.length == 0) {
 			for (let product of catalogObject.products) {
@@ -362,6 +348,10 @@ const handleReview = (event) => {
 	}
 
 	domElements.reviewContainer.classList.remove('invisibleReview');
+
+	domElements.stars.forEach((button) => {
+		button.addEventListener('mouseover', handleStarEnter);
+	});
 }
 
 const handleCancelReview = () => {
@@ -370,6 +360,12 @@ const handleCancelReview = () => {
 	localStorage.removeItem('reviewID');
 	localStorage.removeItem('star-rating');
 	localStorage.removeItem('review');
+	domElements.inputReview.value = '';
+
+	for(let star of domElements.stars) {
+		star.classList.add('gold');
+		star.classList.remove('gray');
+	}
 }
 
 const handleStarClick = (event) => {
@@ -415,7 +411,7 @@ const handleSubmitReview = () => {
 	let reviews = JSON.parse(localStorage.getItem('reviews'));
 
 	if (!starRating) {
-		localStorage.setItem('star-rating', JSON.stringify(5));
+		starRating = "5";
 	}
 	
 	if(!reviews) {
@@ -460,6 +456,8 @@ const handleSearchInput = (event) => {
 
             let productName = (products.products[i].productName).toLowerCase();
             if (productName.includes(searchTerm)) {
+
+				// type, class, parent, attribute, content
 
                 const resultCard = createEl (
                     'div',
@@ -628,6 +626,8 @@ const greetUser = () => {
 const renderCatalog = products => {
 	for (let i = 0; i < products.products.length; i++) {
 		if (products.products[i].featured === false) {
+
+			// type, class, parent, attribute, content
 
 			const productContainer = createEl (
 					'div', 

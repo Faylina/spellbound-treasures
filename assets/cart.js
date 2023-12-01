@@ -48,7 +48,6 @@ const createEl = (
 	if (parent) parent.append(el);
 
 	return el;
-
 }
 
 
@@ -157,12 +156,6 @@ const handleRemove = (event) => {
 
 
 const handlePlusClick = (event) => {
-	// find out current product id
-	// find corresponding product in the cart 
-	// if amount of product < 30
-	// amount of product + 1
-	// value of input field + 1
-    // push to storage
 
 	let currentID = event.target.getAttribute('data-id');
     let cartObject = JSON.parse(localStorage.getItem('cart'));
@@ -196,12 +189,6 @@ const handlePlusClick = (event) => {
     }
 
 const handleMinusClick = (event) => {
-	// find out current product id
-	// find corresponding product in the cart 
-	// if amount of product > 1
-	// amount of product - 1
-	// value of input field - 1
-    // push to storage
 
 	let currentID = event.target.getAttribute('data-id');
     let cartObject = JSON.parse(localStorage.getItem('cart'));
@@ -237,12 +224,12 @@ const handleMinusClick = (event) => {
 const handleAmountChange = (event) => {
 
 	let input = Number(event.currentTarget.value);
+    let cartObject = JSON.parse(localStorage.getItem('cart'));
 
 	if (isNaN(input) || input < 1 || input > 30) {
 		event.currentTarget.value = 1;
 		event.currentTarget.setAttribute('value', '1');
 
-		// set amount in cartObject
         let currentID = event.currentTarget.getAttribute('data-id');
 
         for(let product of cartObject) {
@@ -259,9 +246,6 @@ const handleAmountChange = (event) => {
 		alert('Please enter an amount between 1 and 30.');
 
 	} else {
-		// find out product id of current product
-		// find the corresponding product in cart
-		// change amount of product in cart
 		
 		let currentID = event.target.getAttribute('data-id');
 		for (let product of cartObject) {
@@ -294,11 +278,11 @@ const addNumberToCart = () => {
         numberInCart = sum;
 
         if (numberInCart > 0) {
-            // remove class invisible
+            
             document.querySelector('.cartNumber').classList.remove('invisible');
             document.querySelector('.cartNumber').innerHTML = numberInCart;
         } else {
-            // add class invisible
+           
             document.querySelector('.cartNumber').classList.add('invisible');
         }
     } else {

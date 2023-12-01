@@ -1,6 +1,7 @@
 'use strict';
 
 // VARIABLES
+
 let customers = JSON.parse(localStorage.getItem('customers'));
 const domElements = {};
 
@@ -116,11 +117,11 @@ const addNumberToCart = () => {
         numberInCart = sum;
 
         if (numberInCart > 0) {
-            // remove class invisible
+           
             document.querySelector('.cartNumber').classList.remove('invisible');
             document.querySelector('.cartNumber').innerHTML = numberInCart;
         } else {
-            // add class invisible
+           
             document.querySelector('.cartNumber').classList.add('invisible');
         }
     } else {
