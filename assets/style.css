@@ -26,10 +26,13 @@ a {
     color: #00275B;
 }
 
+a:hover {
+    text-decoration: underline;
+}
+
 .navbar {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
     flex: 0 1 1200px;
 }
 
@@ -708,7 +711,7 @@ footer {
     padding: 0.5em;
     letter-spacing: 0.1em;
     font-size: 0.9em;
-    font-family: roboto, Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Supreme, Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .reviewButtons {
