@@ -316,7 +316,7 @@ const renderCart = products => {
             'productPicture',
             infoContainer,
             [
-                ['src', `${products[i].image[0]}`],
+                ['src', `.${products[i].image[0]}`],
                 ['alt', `${products[i].alt}`],
                 ['height', "100"],
             ],
