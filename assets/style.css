@@ -11,7 +11,8 @@ body {
     position: relative;
 }
 
-/* HEADER */
+
+/************ HEADER ************/
 
 nav {
     display: flex;
@@ -99,7 +100,8 @@ li .invisible {
     display: none;
 }
 
-/* CONTENT */
+
+/************ CONTENT ************/
 
 main {
     display: flex;
@@ -130,7 +132,8 @@ main {
     width: 100%;
 }
 
-/* FOOTER */
+
+/************ FOOTER ************/
 
 hr.divider {
     border-top: 1px solid rgba(166,166,166,0.3);
@@ -189,7 +192,7 @@ footer {
 }
 
 
-/* CART */
+/************ CART ************/
 
 .cartContent, .login-content {
     display: flex;
@@ -227,7 +230,6 @@ footer {
 .cart-login a {
     text-decoration: underline;
 }
-
 
 .fullCart {
     display: flex;
@@ -350,7 +352,7 @@ footer {
 }
 
 
-/* LOGIN */
+/************ LOGIN ************/
 
 .login-content {
     flex: 0 1 1200px;
@@ -383,7 +385,8 @@ footer {
     cursor: pointer;
 }
 
-/* PRODUCTS */
+
+/************ PRODUCTS ************/
 
 .productGallery {
     display: flex;
@@ -503,7 +506,7 @@ footer {
 }
 
 
-/* SEARCH */
+/************ SEARCH ************/
 
 .productSearch {
     position: absolute;
@@ -593,7 +596,7 @@ footer {
     display: none;
 }
 
-/* REVIEW */
+/************ REVIEW ************/
 
 .reviewFeaturedContainer {
     display: flex;

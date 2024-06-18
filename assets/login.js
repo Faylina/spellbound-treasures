@@ -2,18 +2,18 @@
 
 // VARIABLES
 
-let customers = JSON.parse(localStorage.getItem('customers'));
-const domElements = {};
+let customers       = JSON.parse(localStorage.getItem('customers'));
+const domElements   = {};
 
 
 // GENERAL FUNCTIONS
 
 const mapDOM = () => {
-    domElements.login = document.querySelector('.login-button');
-    domElements.email = document.querySelector('#login-email');
-    domElements.password = document.querySelector('#login-password');
-    domElements.greeting = document.querySelector('.greeting');
-    domElements.logout = document.querySelector('.logout');
+    domElements.login       = document.querySelector('.login-button');
+    domElements.email       = document.querySelector('#login-email');
+    domElements.password    = document.querySelector('#login-password');
+    domElements.greeting    = document.querySelector('.greeting');
+    domElements.logout      = document.querySelector('.logout');
 }
 
 const createEventListeners = () => {
@@ -31,8 +31,8 @@ const handleLogout = () => {
 const handleLogin = (event) => {
     event.preventDefault();
 
-    let userExists = checkUser();
-    let loggedIn = checkLogin();
+    let userExists  = checkUser();
+    let loggedIn    = checkLogin();
 
     if (loggedIn === false) {
         if (userExists === true) {
@@ -65,15 +65,15 @@ const checkLogin = () => {
 
 
 const checkUser = () => {
-    let userExists = false;
-    let customerList = JSON.parse(localStorage.getItem('customers'));
+    let userExists      = false;
+    let customerList    = JSON.parse(localStorage.getItem('customers'));
     
     if ((customerList) && customerList.length !== 0) {
         for (let i = 0; i < customerList.length; i++) {
     
             if (
-                customerList[i].email === domElements.email.value &&
-                customerList[i].password === domElements.password.value
+                customerList[i].email       === domElements.email.value &&
+                customerList[i].password    === domElements.password.value
                 ) {
                  return true;
              }
@@ -84,8 +84,8 @@ const checkUser = () => {
 
 const greetUser = () => {
 
-    let login = JSON.parse(localStorage.getItem('login'));
-    let customers = JSON.parse(localStorage.getItem('customers'));
+    let login       = JSON.parse(localStorage.getItem('login'));
+    let customers   = JSON.parse(localStorage.getItem('customers'));
 
     if (login) {
         for(let i = 0; i < customers.length; i++) {
@@ -104,9 +104,9 @@ const greetUser = () => {
 }
 
 const addNumberToCart = () => {
-	let numberInCart = 0;
-	let cart = JSON.parse(localStorage.getItem('cart'));
-	let sum = 0;
+	let numberInCart    = 0;
+	let cart            = JSON.parse(localStorage.getItem('cart'));
+	let sum             = 0;
 
     if (cart) {
 

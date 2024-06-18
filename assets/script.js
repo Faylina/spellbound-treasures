@@ -3,62 +3,62 @@
 
 // VARIABLES
 
-const domElements = {};
-const newDOMElements = {};
+const domElements 		= {};
+const newDOMElements 	= {};
 const newSearchElements = {};
-let catalogObject = JSON.parse(localStorage.getItem('catalog'));
-let cartObject = JSON.parse(localStorage.getItem('cart'));
+let catalogObject 		= JSON.parse(localStorage.getItem('catalog'));
+let cartObject 			= JSON.parse(localStorage.getItem('cart'));
 
 
 // GENERAL FUNCTIONS
 
 const mapDOM = () => {
-	domElements.productGallery = document.querySelector('.productGallery');
-	domElements.featuredProduct = document.querySelector('.featuredProduct');
-	domElements.greeting = document.querySelector('.greeting');
-	domElements.logout = document.querySelector('.logout');
-	domElements.search = document.querySelector('.search');
-    domElements.productSearch = document.querySelector('.productSearch');
-    domElements.close = document.querySelector('.close');
-    domElements.searchInput = document.querySelector('#searchInput');
-    domElements.resultsContainer = document.querySelector('.resultsContainer');
-    domElements.searchResults = document.querySelector('.searchResults');
-    domElements.searchBackground = document.querySelector('.searchBackground');
-	domElements.reviewContainer = document.querySelector('.reviewContainer');
-	domElements.cancelReview = document.querySelector('.cancel');
-	domElements.reviewImage = document.querySelector('.reviewImage');
-	domElements.stars = Array.from(document.querySelectorAll('.star'));
-	domElements.submit = document.querySelector('.submit');
-	domElements.inputReview = document.querySelector('#productReview');
-	domElements.footerSearch = document.querySelector('.footerSearch');
+	domElements.productGallery 		= document.querySelector('.productGallery');
+	domElements.featuredProduct	 	= document.querySelector('.featuredProduct');
+	domElements.greeting 			= document.querySelector('.greeting');
+	domElements.logout 				= document.querySelector('.logout');
+	domElements.search 				= document.querySelector('.search');
+    domElements.productSearch 		= document.querySelector('.productSearch');
+    domElements.close 				= document.querySelector('.close');
+    domElements.searchInput 		= document.querySelector('#searchInput');
+    domElements.resultsContainer 	= document.querySelector('.resultsContainer');
+    domElements.searchResults 		= document.querySelector('.searchResults');
+    domElements.searchBackground 	= document.querySelector('.searchBackground');
+	domElements.reviewContainer 	= document.querySelector('.reviewContainer');
+	domElements.cancelReview 		= document.querySelector('.cancel');
+	domElements.reviewImage 		= document.querySelector('.reviewImage');
+	domElements.stars 				= Array.from(document.querySelectorAll('.star'));
+	domElements.submit 				= document.querySelector('.submit');
+	domElements.inputReview 		= document.querySelector('#productReview');
+	domElements.footerSearch 		= document.querySelector('.footerSearch');
  }
 
 const mapSearchElements = () => {
-    newSearchElements.resultCards = Array.from(document.querySelectorAll('.resultCard'));
+    newSearchElements.resultCards 	= Array.from(document.querySelectorAll('.resultCard'));
  }
 
 const mapNewDOM = () => {
-	newDOMElements.plusButtons = Array.from(document.querySelectorAll('.plus')); 
-	newDOMElements.minusButtons = Array.from(document.querySelectorAll('.minus'));  
-	newDOMElements.featuredPlusButton = document.querySelector('.featuredPlus'); 
-	newDOMElements.featuredMinusButton = document.querySelector('.featuredMinus'); 
-	newDOMElements.quantityInput = Array.from(document.querySelectorAll('.quantityInput')); 
-	newDOMElements.featuredQuantityInput = document.querySelector('.featuredQuantityInput');
-	newDOMElements.addToCartButtons = Array.from(document.querySelectorAll('.addToCart'));
-	newDOMElements.featuredAddToCartButton = document.querySelector('.featuredAddToCart');
-	newDOMElements.productContainers = Array.from(document.querySelectorAll('.productContainer'));
-	newDOMElements.featuredContainer = document.querySelector('.featuredContainer');
-	newDOMElements.writeReview = Array.from(document.querySelectorAll('.writeReview'));
-	newDOMElements.productImages = Array.from(document.querySelectorAll('.productImage'));
-	newDOMElements.featuredImage = document.querySelector('.featuredImage');
+	newDOMElements.plusButtons 				= Array.from(document.querySelectorAll('.plus')); 
+	newDOMElements.minusButtons 			= Array.from(document.querySelectorAll('.minus'));  
+	newDOMElements.featuredPlusButton 		= document.querySelector('.featuredPlus'); 
+	newDOMElements.featuredMinusButton 		= document.querySelector('.featuredMinus'); 
+	newDOMElements.quantityInput 			= Array.from(document.querySelectorAll('.quantityInput')); 
+	newDOMElements.featuredQuantityInput 	= document.querySelector('.featuredQuantityInput');
+	newDOMElements.addToCartButtons 		= Array.from(document.querySelectorAll('.addToCart'));
+	newDOMElements.featuredAddToCartButton 	= document.querySelector('.featuredAddToCart');
+	newDOMElements.productContainers		= Array.from(document.querySelectorAll('.productContainer'));
+	newDOMElements.featuredContainer 		= document.querySelector('.featuredContainer');
+	newDOMElements.writeReview 				= Array.from(document.querySelectorAll('.writeReview'));
+	newDOMElements.productImages 			= Array.from(document.querySelectorAll('.productImage'));
+	newDOMElements.featuredImage 			= document.querySelector('.featuredImage');
 }
 
 const createEl = (
-	type = 'div',
-	className = false,
-	parent = false,
-	attribute = false,
-	content = false,
+	type 		= 'div',
+	className 	= false,
+	parent 		= false,
+	attribute 	= false,
+	content 	= false,
 ) => {
 	const el = document.createElement(type);
 	if (className) el.className = className;
@@ -159,9 +159,9 @@ const handlePlusClick = (event) => {
 			} 
 		}
 		
-		const featuredButton = newDOMElements.featuredAddToCartButton;
-		let currentQuantityInput = newDOMElements.featuredQuantityInput;
-		let currentFeaturedID = featuredButton.getAttribute('data-id');
+		const featuredButton 		= newDOMElements.featuredAddToCartButton;
+		let currentQuantityInput 	= newDOMElements.featuredQuantityInput;
+		let currentFeaturedID 		= featuredButton.getAttribute('data-id');
 	
 			if (currentFeaturedID == productIDCurrent) {
 				
@@ -207,9 +207,9 @@ const handleMinusClick = (event) => {
 			} 
 		}
 		
-		const featuredButton = newDOMElements.featuredAddToCartButton;
-		let currentQuantityInput = newDOMElements.featuredQuantityInput;
-		let currentFeaturedID = featuredButton.getAttribute('data-id');
+		const featuredButton 		= newDOMElements.featuredAddToCartButton;
+		let currentQuantityInput 	= newDOMElements.featuredQuantityInput;
+		let currentFeaturedID 		= featuredButton.getAttribute('data-id');
 	
 			if (currentFeaturedID == productIDCurrent) {
 				
@@ -278,12 +278,12 @@ const handleAmountChange = (event) => {
 }
 
 const handleAddToCart = (event) => {
-	let addedProductID = Number(event.currentTarget.getAttribute('data-id'));
-	let addedProductAmount = Number(event.currentTarget.getAttribute('data-amount'));
+	let addedProductID 			= Number(event.currentTarget.getAttribute('data-id'));
+	let addedProductAmount 		= Number(event.currentTarget.getAttribute('data-amount'));
 	createCart();
-	let newCart = JSON.parse(localStorage.getItem('cart'));
-	let isAlreadyInTheCart = false;
-	let catalogObject = JSON.parse(localStorage.getItem('catalog'));
+	let newCart				 	= JSON.parse(localStorage.getItem('cart'));
+	let isAlreadyInTheCart 		= false;
+	let catalogObject 			= JSON.parse(localStorage.getItem('catalog'));
 
 		if (newCart.length == 0) {
 			for (let product of catalogObject.products) {
@@ -369,8 +369,9 @@ const handleCancelReview = () => {
 }
 
 const handleStarClick = (event) => {
-	let starClick = event.currentTarget.getAttribute('data-number');
-	let stars = domElements.stars;
+	let starClick 	= event.currentTarget.getAttribute('data-number');
+	let stars 		= domElements.stars;
+
 	for (let i = 0; i < stars.length; i++) {
 		if ( i > (starClick - 1)) {
 			stars[i].classList.remove('gold');
@@ -386,8 +387,9 @@ const handleStarClick = (event) => {
 }
 
 const handleStarEnter = (event) => {
-	let starHover = event.currentTarget.getAttribute('data-number');
-	let stars = domElements.stars;
+	let starHover 	= event.currentTarget.getAttribute('data-number');
+	let stars 		= domElements.stars;
+
 	for (let i = 0; i < stars.length; i++) {
 		if ( i > (starHover - 1)) {
 			stars[i].classList.remove('gold');
@@ -405,10 +407,10 @@ const handleInputReview = (event) => {
 }
 
 const handleSubmitReview = () => {
-	let reviewID = JSON.parse(localStorage.getItem('reviewID'));
-	let starRating = JSON.parse(localStorage.getItem('star-rating'));
-	let review = JSON.parse(localStorage.getItem('review'));
-	let reviews = JSON.parse(localStorage.getItem('reviews'));
+	let reviewID 	= JSON.parse(localStorage.getItem('reviewID'));
+	let starRating 	= JSON.parse(localStorage.getItem('star-rating'));
+	let review 		= JSON.parse(localStorage.getItem('review'));
+	let reviews 	= JSON.parse(localStorage.getItem('reviews'));
 
 	if (!starRating) {
 		starRating = "5";
@@ -444,8 +446,8 @@ const handleSubmitReview = () => {
 
 
 const handleSearchInput = (event) => {
-    let products = JSON.parse(localStorage.getItem('catalog'))
-    let searchTerm = (event.currentTarget.value).toLowerCase(); 
+    let products 	= JSON.parse(localStorage.getItem('catalog'))
+    let searchTerm 	= (event.currentTarget.value).toLowerCase(); 
 
     domElements.searchResults.innerHTML = '';
 
@@ -505,8 +507,8 @@ const handleScroll = (event) => {
 
     for (let i = 0; i < newDOMElements.productContainers.length; i++) {
 
-        let productID = newDOMElements.productContainers[i].getAttribute('data-id');
-        let product = newDOMElements.productContainers[i];
+        let productID 	= newDOMElements.productContainers[i].getAttribute('data-id');
+        let product 	= newDOMElements.productContainers[i];
 
         if (productID == searchID) {
 
@@ -532,8 +534,8 @@ const handleClose = () => {
 
 const handleEnterImage = (event) => {
 
-	let currentID = event.currentTarget.getAttribute('data-id');
-	let catalog = JSON.parse(localStorage.getItem('catalog'));
+	let currentID 	= event.currentTarget.getAttribute('data-id');
+	let catalog 	= JSON.parse(localStorage.getItem('catalog'));
 	
 	for (let i = 0; i < catalog.products.length; i++) {
 
@@ -547,8 +549,8 @@ const handleEnterImage = (event) => {
 }
 
 const handleLeaveImage = (event) => {
-	let currentID = event.currentTarget.getAttribute('data-id');
-	let catalog = JSON.parse(localStorage.getItem('catalog'));
+	let currentID 	= event.currentTarget.getAttribute('data-id');
+	let catalog 	= JSON.parse(localStorage.getItem('catalog'));
 	
 	for (let i = 0; i < catalog.products.length; i++) {
 
@@ -572,9 +574,9 @@ const createCart = () => {
 }
 
 const addNumberToCart = () => {
-	let numberInCart = 0;
-	let cart = JSON.parse(localStorage.getItem('cart'));
-	let sum = 0;
+	let numberInCart 	= 0;
+	let cart 			= JSON.parse(localStorage.getItem('cart'));
+	let sum 			= 0;
 
     if (cart) {
 
@@ -600,8 +602,8 @@ const addNumberToCart = () => {
 
 const greetUser = () => {
 
-    let login = JSON.parse(localStorage.getItem('login'));
-    let customers = JSON.parse(localStorage.getItem('customers'));
+    let login 		= JSON.parse(localStorage.getItem('login'));
+    let customers 	= JSON.parse(localStorage.getItem('customers'));
 
     if (login) {
         for(let i = 0; i < customers.length; i++) {
@@ -621,7 +623,6 @@ const greetUser = () => {
 
 
 // Load product catalog to website
-
 
 const renderCatalog = products => {
 	for (let i = 0; i < products.products.length; i++) {

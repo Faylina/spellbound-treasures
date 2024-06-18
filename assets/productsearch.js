@@ -2,20 +2,20 @@
 
 // VARIABLES
 
-const elements = {};
-const newElements = {};
+const elements      = {};
+const newElements   = {};
 
 // GENERAL FUNCTIONS 
 
 const mapSearch = () => {
-    elements.search = document.querySelector('.search');
-    elements.productSearch = document.querySelector('.productSearch');
-    elements.close = document.querySelector('.close');
-    elements.searchInput = document.querySelector('#searchInput');
-    elements.resultsContainer = document.querySelector('.resultsContainer');
-    elements.searchResults = document.querySelector('.searchResults');
-    elements.searchBackground = document.querySelector('.searchBackground');
-    elements.productContainers = Array.from(document.querySelectorAll('.productContainer'));
+    elements.search             = document.querySelector('.search');
+    elements.productSearch      = document.querySelector('.productSearch');
+    elements.close              = document.querySelector('.close');
+    elements.searchInput        = document.querySelector('#searchInput');
+    elements.resultsContainer   = document.querySelector('.resultsContainer');
+    elements.searchResults      = document.querySelector('.searchResults');
+    elements.searchBackground   = document.querySelector('.searchBackground');
+    elements.productContainers  = Array.from(document.querySelectorAll('.productContainer'));
 }
 
 const mapNewElements = () => {
@@ -36,11 +36,11 @@ const createEvtFind = () => {
 }
 
 const createSearchResult = (
-	type = 'div',
-	className = false,
-	parent = false,
-	attribute = false,
-	content = false,
+	type        = 'div',
+	className   = false,
+	parent      = false,
+	attribute   = false,
+	content     = false,
 ) => {
 	const el = document.createElement(type);
 	if (className) el.className = className;
@@ -59,8 +59,8 @@ const createSearchResult = (
 // EVENT HANDLERS
 
 const handleSearchInput = (event) => {
-    let products = JSON.parse(localStorage.getItem('catalog'))
-    let searchTerm = (event.currentTarget.value).toLowerCase(); 
+    let products    = JSON.parse(localStorage.getItem('catalog'))
+    let searchTerm  = (event.currentTarget.value).toLowerCase(); 
 
     elements.searchResults.innerHTML = '';
 

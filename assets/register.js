@@ -2,19 +2,19 @@
 
 // VARIABLES
 
-let customers = JSON.parse(localStorage.getItem('customers'));
-const domElements = {};
+let customers       = JSON.parse(localStorage.getItem('customers'));
+const domElements   = {};
 
 // GENERAL FUNCTIONS
 
 const mapDOM = () => {
-    domElements.register = document.querySelector('.login-button');
-    domElements.firstName = document.querySelector('#firstName');
-    domElements.lastName = document.querySelector('#lastName');
-    domElements.email = document.querySelector('#loginEmail');
-    domElements.password = document.querySelector('#loginPassword');
-    domElements.greeting = document.querySelector('.greeting');
-    domElements.logout = document.querySelector('.logout');
+    domElements.register    = document.querySelector('.login-button');
+    domElements.firstName   = document.querySelector('#firstName');
+    domElements.lastName    = document.querySelector('#lastName');
+    domElements.email       = document.querySelector('#loginEmail');
+    domElements.password    = document.querySelector('#loginPassword');
+    domElements.greeting    = document.querySelector('.greeting');
+    domElements.logout      = document.querySelector('.logout');
 }
 
 const createEventListeners = () => {
@@ -32,9 +32,9 @@ const handleLogout = () => {
 const handleRegister = (event) => {
 
     event.preventDefault();
-    let emailCheck = checkEmail();
-    let completeCheck = checkComplete();
-    let userExists = checkUser();
+    let emailCheck      = checkEmail();
+    let completeCheck   = checkComplete();
+    let userExists      = checkUser();
 
     if(completeCheck === true) {
         if (emailCheck === true) {
@@ -46,10 +46,10 @@ const handleRegister = (event) => {
                 }
                 
                 const newUser = {
-                    firstName: domElements.firstName.value,
-                    lastName: domElements.lastName.value,
-                    email: domElements.email.value,
-                    password: domElements.password.value
+                    firstName:  domElements.firstName.value,
+                    lastName:   domElements.lastName.value,
+                    email:      domElements.email.value,
+                    password:   domElements.password.value
                 };
 
                 customers.push(newUser);
@@ -61,6 +61,7 @@ const handleRegister = (event) => {
                 greetUser();
 
                 window.location.href = "../index.html";
+
             } else {
                 alert('Your email address has already been registered.')
             }
@@ -75,31 +76,32 @@ const handleRegister = (event) => {
 // SHOP FUNCTIONS
 
 const checkEmail = () => {
-    let email = domElements.email.value;
+    let email   = domElements.email.value;
     let isEmail = email.includes('@'); 
+
     return isEmail;
 }
 
 const checkComplete = () => {
-    let firstName = domElements.firstName.value;
-    let lastName = domElements.lastName.value;
-    let email = domElements.email.value;
-    let password = domElements.password.value;
-    let complete = false;
+    let firstName   = domElements.firstName.value;
+    let lastName    = domElements.lastName.value;
+    let email       = domElements.email.value;
+    let password    = domElements.password.value;
+    let complete    = false;
 
     if (
-        firstName.length != 0 &&
-        lastName.length != 0 &&
-        email.length != 0 &&
-        password.length != 0
+        firstName.length    != 0 &&
+        lastName.length     != 0 &&
+        email.length        != 0 &&
+        password.length     != 0
     ) {
         return complete = true; 
     }
 }
 
 const checkUser = () => {
-    let userExists = false;
-    let customerList = JSON.parse(localStorage.getItem('customers'));
+    let userExists      = false;
+    let customerList    = JSON.parse(localStorage.getItem('customers'));
     
     if ((customerList) && customerList.length !== 0) {
         for (let i = 0; i < customerList.length; i++) {
@@ -114,8 +116,8 @@ const checkUser = () => {
 
 const greetUser = () => {
 
-    let login = JSON.parse(localStorage.getItem('login'));
-    let customers = JSON.parse(localStorage.getItem('customers'));
+    let login       = JSON.parse(localStorage.getItem('login'));
+    let customers   = JSON.parse(localStorage.getItem('customers'));
 
     if (login) {
         for(let i = 0; i < customers.length; i++) {
@@ -134,9 +136,9 @@ const greetUser = () => {
 }
 
 const addNumberToCart = () => {
-	let numberInCart = 0;
-	let cart = JSON.parse(localStorage.getItem('cart'));
-	let sum = 0;
+	let numberInCart    = 0;
+	let cart            = JSON.parse(localStorage.getItem('cart'));
+	let sum             = 0;
 
     if (cart) {
 

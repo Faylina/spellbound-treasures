@@ -3,39 +3,39 @@
 
 // VARIABLES
 
-const domElements = {};
-const newDOMElements = {};
-const orders = [];
-let cartObject = JSON.parse(localStorage.getItem('cart'));
+const domElements       = {};
+const newDOMElements    = {};
+const orders            = [];
+let cartObject          = JSON.parse(localStorage.getItem('cart'));
 
 
 // GENERAL FUNCTIONS
 
 const mapDOM = () => {
-	domElements.cart = document.querySelector('.cart');
-    domElements.purchaseButton = document.querySelector('.purchase');
-    domElements.subtotal = document.querySelector('.subtotal');
-    domElements.emptyCart = document.querySelector('.cartContent');
-    domElements.FullCart = document.querySelector('.fullCart');
-    domElements.greeting = document.querySelector('.greeting');
-    domElements.logout = document.querySelector('.logout');
+	domElements.cart            = document.querySelector('.cart');
+    domElements.purchaseButton  = document.querySelector('.purchase');
+    domElements.subtotal        = document.querySelector('.subtotal');
+    domElements.emptyCart       = document.querySelector('.cartContent');
+    domElements.FullCart        = document.querySelector('.fullCart');
+    domElements.greeting        = document.querySelector('.greeting');
+    domElements.logout          = document.querySelector('.logout');
 }
 
 const mapNewDOM = () => {
-    newDOMElements.plusButtons = Array.from(document.querySelectorAll('.plus'));
-    newDOMElements.minusButtons = Array.from(document.querySelectorAll('.minus'));
-    newDOMElements.quantityInput = Array.from(document.querySelectorAll('.quantityInput'));
-    newDOMElements.removeButtons = Array.from(document.querySelectorAll('.remove'));
-    newDOMElements.productCards = Array.from(document.querySelectorAll('.productCard'));
-    newDOMElements.subtotalProduct = Array.from(document.querySelectorAll('.subtotalProduct'));
+    newDOMElements.plusButtons      = Array.from(document.querySelectorAll('.plus'));
+    newDOMElements.minusButtons     = Array.from(document.querySelectorAll('.minus'));
+    newDOMElements.quantityInput    = Array.from(document.querySelectorAll('.quantityInput'));
+    newDOMElements.removeButtons    = Array.from(document.querySelectorAll('.remove'));
+    newDOMElements.productCards     = Array.from(document.querySelectorAll('.productCard'));
+    newDOMElements.subtotalProduct  = Array.from(document.querySelectorAll('.subtotalProduct'));
 }
 
 const createEl = (
-	type = 'div',
-	className = false,
-	parent = false,
-	attribute = false,
-	content = false,
+	type        = 'div',
+	className   = false,
+	parent      = false,
+	attribute   = false,
+	content     = false,
 ) => {
 	const el = document.createElement(type);
 	if (className) el.className = className;
@@ -72,9 +72,9 @@ const createEventListeners = () => {
 
 const handlePurchase = (event) => {
 
-    let login = JSON.parse(localStorage.getItem('login'));
-    let cart = JSON.parse(localStorage.getItem('cart'));
-    let orders = JSON.parse(localStorage.getItem('orders'));
+    let login   = JSON.parse(localStorage.getItem('login'));
+    let cart    = JSON.parse(localStorage.getItem('cart'));
+    let orders  = JSON.parse(localStorage.getItem('orders'));
 
     if (login) {
 
@@ -113,8 +113,8 @@ const handleLogout = () => {
 
 
 const handleRemove = (event) => {
-    let removedID = event.currentTarget.getAttribute('data-id');
-    let cartObjectRemove = JSON.parse(localStorage.getItem('cart'));
+    let removedID           = event.currentTarget.getAttribute('data-id');
+    let cartObjectRemove    = JSON.parse(localStorage.getItem('cart'));
     let cartAfterRemoval;
 
     let checkID = (object) => {
@@ -157,8 +157,8 @@ const handleRemove = (event) => {
 
 const handlePlusClick = (event) => {
 
-	let currentID = event.target.getAttribute('data-id');
-    let cartObject = JSON.parse(localStorage.getItem('cart'));
+	let currentID   = event.target.getAttribute('data-id');
+    let cartObject  = JSON.parse(localStorage.getItem('cart'));
 
 		for (let product of cartObject) {
 
@@ -190,8 +190,8 @@ const handlePlusClick = (event) => {
 
 const handleMinusClick = (event) => {
 
-	let currentID = event.target.getAttribute('data-id');
-    let cartObject = JSON.parse(localStorage.getItem('cart'));
+	let currentID   = event.target.getAttribute('data-id');
+    let cartObject  = JSON.parse(localStorage.getItem('cart'));
 
 		for (let product of cartObject) {
 
@@ -223,8 +223,8 @@ const handleMinusClick = (event) => {
 
 const handleAmountChange = (event) => {
 
-	let input = Number(event.currentTarget.value);
-    let cartObject = JSON.parse(localStorage.getItem('cart'));
+	let input       = Number(event.currentTarget.value);
+    let cartObject  = JSON.parse(localStorage.getItem('cart'));
 
 	if (isNaN(input) || input < 1 || input > 30) {
 		event.currentTarget.value = 1;
@@ -265,9 +265,9 @@ const handleAmountChange = (event) => {
 // SHOP FUNCTIONS
 
 const addNumberToCart = () => {
-	let numberInCart = 0;
-	let cart = JSON.parse(localStorage.getItem('cart'));
-	let sum = 0;
+	let numberInCart    = 0;
+	let cart            = JSON.parse(localStorage.getItem('cart'));
+	let sum             = 0;
 
     if (cart) {
 
@@ -464,8 +464,8 @@ const showSubtotal = (product, ID) => {
 
 const greetUser = () => {
 
-    let login = JSON.parse(localStorage.getItem('login'));
-    let customers = JSON.parse(localStorage.getItem('customers'));
+    let login       = JSON.parse(localStorage.getItem('login'));
+    let customers   = JSON.parse(localStorage.getItem('customers'));
 
     if (login) {
         for(let i = 0; i < customers.length; i++) {
