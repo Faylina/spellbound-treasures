@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -393,6 +394,7 @@ footer {
     display: flex;
     flex-direction: column;
     margin: 3em 1em;
+    width: 250px;
 }
 
 .productImage {
@@ -427,20 +429,20 @@ footer {
     padding: 0.5em 0;
 }
 
-.plus, .minus, .featuredPlus, .featuredMinus{
+.plus, .minus, .featuredPlus, .featuredMinus {
     display: flex;
     justify-content: center;
     padding: 0 1em;
     font-size: 1.2em;
     cursor: pointer;
     color: #00275B;
-    flex: 1;
 }
 
 .quantityInput, .featuredQuantityInput {
     border: none;
     text-align: center;
     color: #00275B;
+    min-width: 0;
 }
 
 .addToCart, .featuredAddToCart {
