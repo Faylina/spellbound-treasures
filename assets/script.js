@@ -131,99 +131,105 @@ const createEvtFind = () => {
 const handlePlusClick = (event) => {
 	
 	let productIDCurrent = event.target.getAttribute('data-id');
-		for (let button of newDOMElements.addToCartButtons) {
+	for (let button of newDOMElements.addToCartButtons) {
 
-			let currentButtonID = button.getAttribute('data-id');
-	
-			if (currentButtonID == productIDCurrent) {
+		let currentButtonID = button.getAttribute('data-id');
 
-				let currentButtonAmount = Number(button.getAttribute('data-amount'));
+		if (currentButtonID == productIDCurrent) {
 
-				if (currentButtonAmount < 30) {
+			let currentButtonAmount = Number(button.getAttribute('data-amount'));
 
-					button.setAttribute('data-amount', currentButtonAmount + 1);
+			if (currentButtonAmount < 30) {
 
-					for (let input of newDOMElements.quantityInput) {
+				button.setAttribute('data-amount', currentButtonAmount + 1);
 
-						let currentInputID = input.getAttribute('data-id');
+				for (let input of newDOMElements.quantityInput) {
 
-						if (currentInputID == productIDCurrent) {
+					let currentInputID = input.getAttribute('data-id');
 
-							input.setAttribute('value', currentButtonAmount + 1);
-							input.value = currentButtonAmount + 1;
-						}
+					if (currentInputID == productIDCurrent) {
+
+						input.setAttribute('value', currentButtonAmount + 1);
+						input.value = currentButtonAmount + 1;
 					}
-				} else {
-                    alert('No more than 30 of each product can be added to the cart.')
-                }
-			} 
-		}
-		
-		const featuredButton 		= newDOMElements.featuredAddToCartButton;
-		let currentQuantityInput 	= newDOMElements.featuredQuantityInput;
-		let currentFeaturedID 		= featuredButton.getAttribute('data-id');
-	
-			if (currentFeaturedID == productIDCurrent) {
-				
-				const currentFeaturedAmount = Number(featuredButton.getAttribute('data-amount'));
-
-				if (currentFeaturedAmount < 30) {
-
-					featuredButton.setAttribute('data-amount', currentFeaturedAmount + 1);
-
-					currentQuantityInput.setAttribute('value', currentFeaturedAmount + 1);
-
-					currentQuantityInput.value = currentFeaturedAmount + 1;
 				}
+			} else {
+				alert('No more than 30 of each product can be added to the cart.')
 			}
+		} 
+	}
+	
+	const featuredButton 		= newDOMElements.featuredAddToCartButton;
+	let currentQuantityInput 	= newDOMElements.featuredQuantityInput;
+	let currentFeaturedID 		= featuredButton.getAttribute('data-id');
+
+	if (currentFeaturedID == productIDCurrent) {
+		
+		const currentFeaturedAmount = Number(featuredButton.getAttribute('data-amount'));
+
+		if (currentFeaturedAmount < 30) {
+
+			featuredButton.setAttribute('data-amount', currentFeaturedAmount + 1);
+
+			currentQuantityInput.setAttribute('value', currentFeaturedAmount + 1);
+
+			currentQuantityInput.value = currentFeaturedAmount + 1;
+		}
+	}
 }
 
 const handleMinusClick = (event) => {
 
 	let productIDCurrent = event.target.getAttribute('data-id');
-		for (let button of newDOMElements.addToCartButtons) {
+	for (let button of newDOMElements.addToCartButtons) {
 
-			let currentButtonID = button.getAttribute('data-id');
-	
-			if (currentButtonID == productIDCurrent) {
+		let currentButtonID = button.getAttribute('data-id');
 
-				let currentButtonAmount = Number(button.getAttribute('data-amount'));
-				if (currentButtonAmount > 1) {
+		if (currentButtonID == productIDCurrent) {
 
-					button.setAttribute('data-amount', currentButtonAmount - 1);
+			let currentButtonAmount = Number(button.getAttribute('data-amount'));
 
-					for (let input of newDOMElements.quantityInput) {
+			if (currentButtonAmount > 1) {
 
-						let currentInputID = input.getAttribute('data-id');
-						if (currentInputID == productIDCurrent) {
+				button.setAttribute('data-amount', currentButtonAmount - 1);
 
-							input.setAttribute('value', currentButtonAmount - 1);
-							input.value = currentButtonAmount - 1;
-						}
+				for (let input of newDOMElements.quantityInput) {
+
+					let currentInputID = input.getAttribute('data-id');
+					if (currentInputID == productIDCurrent) {
+
+						input.setAttribute('value', currentButtonAmount - 1);
+						input.value = currentButtonAmount - 1;
 					}
-				} else {
-                    alert('Please select at least one product to add to the cart.')
-                }
-			} 
-		}
+				}
+
+			} else {
+
+				alert('Please select at least one product to add to the cart.')
+			}
+		} 
+	}
 		
 		const featuredButton 		= newDOMElements.featuredAddToCartButton;
 		let currentQuantityInput 	= newDOMElements.featuredQuantityInput;
 		let currentFeaturedID 		= featuredButton.getAttribute('data-id');
 	
-			if (currentFeaturedID == productIDCurrent) {
-				
-				const currentFeaturedAmount = Number(featuredButton.getAttribute('data-amount'));
+		if (currentFeaturedID == productIDCurrent) {
+			
+			const currentFeaturedAmount = Number(featuredButton.getAttribute('data-amount'));
 
-				if (currentFeaturedAmount > 1) {
+			if (currentFeaturedAmount > 1) {
 
-					featuredButton.setAttribute('data-amount', currentFeaturedAmount - 1);
+				featuredButton.setAttribute('data-amount', currentFeaturedAmount - 1);
 
-					currentQuantityInput.setAttribute('value', currentFeaturedAmount - 1);
+				currentQuantityInput.setAttribute('value', currentFeaturedAmount - 1);
 
-					currentQuantityInput.value = currentFeaturedAmount - 1;
-				}
+				currentQuantityInput.value = currentFeaturedAmount - 1;
+
+			} else {
+				alert('Please select at least one product to add to the cart.')
 			}
+		}
 }
 
 const handleAmountChange = (event) => {
@@ -288,11 +294,11 @@ const handleAddToCart = (event) => {
 		if (newCart.length == 0) {
 			for (let product of catalogObject.products) {
 				if (product.productID == addedProductID) {
-						newCart.push(product);
-						newCart[newCart.length - 1].amount = addedProductAmount; 
-						localStorage.setItem('cart', JSON.stringify(newCart));
-						addNumberToCart();
-						window.location.href = "../pages/cart.html";
+					newCart.push(product);
+					newCart[newCart.length - 1].amount = addedProductAmount; 
+					localStorage.setItem('cart', JSON.stringify(newCart));
+					addNumberToCart();
+					window.location.href = "../pages/cart.html";
 				}
 			}
 		} else {
@@ -306,11 +312,11 @@ const handleAddToCart = (event) => {
 			if (!isAlreadyInTheCart) {
 				for (let product of catalogObject.products) {
 					if (product.productID == addedProductID) {
-							newCart.push(product);
-							newCart[newCart.length - 1].amount = addedProductAmount; 
-							localStorage.setItem('cart', JSON.stringify(newCart));
-							addNumberToCart();
-							window.location.href = "../pages/cart.html";
+						newCart.push(product);
+						newCart[newCart.length - 1].amount = addedProductAmount; 
+						localStorage.setItem('cart', JSON.stringify(newCart));
+						addNumberToCart();
+						window.location.href = "../pages/cart.html";
 					}
 				}
 			} else {
