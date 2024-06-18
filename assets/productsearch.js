@@ -87,7 +87,7 @@ const handleSearchInput = (event) => {
                     resultCard,
                     [
                         ['alt', `${products.products[i].alt}`],
-                        ['src', `${products.products[i].image[0]}`],
+                        ['src', `.${products.products[i].image[0]}`],
                         ['height', "75"]
                     ]
                 );
