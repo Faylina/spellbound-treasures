@@ -298,7 +298,7 @@ const handleAddToCart = (event) => {
 					newCart[newCart.length - 1].amount = addedProductAmount; 
 					localStorage.setItem('cart', JSON.stringify(newCart));
 					addNumberToCart();
-					window.location.href = "../pages/cart.html";
+					window.location.href = "./pages/cart.html";
 				}
 			}
 		} else {
@@ -316,7 +316,7 @@ const handleAddToCart = (event) => {
 						newCart[newCart.length - 1].amount = addedProductAmount; 
 						localStorage.setItem('cart', JSON.stringify(newCart));
 						addNumberToCart();
-						window.location.href = "../pages/cart.html";
+						window.location.href = "./pages/cart.html";
 					}
 				}
 			} else {
@@ -325,7 +325,7 @@ const handleAddToCart = (event) => {
 						cartProduct.amount = cartProduct.amount + addedProductAmount;
 						localStorage.setItem('cart', JSON.stringify(newCart));
 						addNumberToCart();
-						window.location.href = "../pages/cart.html";
+						window.location.href = "./pages/cart.html";
 					}
 				}
 			}

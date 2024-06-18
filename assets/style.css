@@ -734,3 +734,21 @@ footer {
 .invisibleReview {
     display: none;
 }
+
+
+/********** LINK TO THE CODING SORCERESS ***********/
+
+body .coding-sorceress {
+    width: 100%;
+    background-color: #625772;
+    padding: 10px 5px 10px 40px;
+}
+
+.coding-sorceress a {
+    color: #FEFAEC;
+}
+
+.coding-sorceress a:hover {
+    color: #F9A1BC;
+    text-decoration: none;
+}
