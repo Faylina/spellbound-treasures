@@ -36,8 +36,8 @@ const handleRegister = (event) => {
     let completeCheck = checkComplete();
     let userExists = checkUser();
 
-    if(emailCheck === true) {
-        if (completeCheck === true) {
+    if(completeCheck === true) {
+        if (emailCheck === true) {
             console.log(userExists);
             if(userExists === false) {
 
@@ -65,10 +65,10 @@ const handleRegister = (event) => {
                 alert('Your email address has already been registered.')
             }
         } else {
-            alert('Please fill out each field.');
+            alert('Not a valid email-address.');
         }
     } else {
-        alert('Not a valid email-address.');
+        alert('Please fill out each field.');
     }
 }
 

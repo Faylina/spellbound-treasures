@@ -215,7 +215,7 @@ const handleMinusClick = (event) => {
                     addNumberToCart();
 
                 } else {
-                    alert('No more than 30 of each product can be added to the cart.')
+                    alert('Please select at least one product to add to the cart.')
                 }
             }
         }
