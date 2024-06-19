@@ -60,7 +60,7 @@ const handleRegister = (event) => {
 
                 greetUser();
 
-                window.location.href = "../index.html";
+                window.location.href = "../index.php";
 
             } else {
                 alert('Your email address has already been registered.')

@@ -41,7 +41,7 @@ const handleLogin = (event) => {
 
             localStorage.setItem('login', JSON.stringify(email));
 
-            window.location.href = "../index.html";
+            window.location.href = "../index.php";
 
         } else {
             alert('Wrong email or password.');

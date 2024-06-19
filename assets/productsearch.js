@@ -111,7 +111,7 @@ const handleSearchInput = (event) => {
 }
 
 const handleRedirect = (event) => {
-    window.location.href = '../index.html';
+    window.location.href = '../index.php';
 }
 
 const handleSearch = () => {

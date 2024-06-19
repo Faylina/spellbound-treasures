@@ -1,3 +1,37 @@
+<?php
+#********************************************************************#
+				
+				
+				#******************************************#
+				#********** ENABLE STRICT TYPING **********#
+				#******************************************#
+				
+				declare(strict_types=1);
+				
+				
+#********************************************************************# 
+			
+			
+				#****************************************#
+				#********** PAGE CONFIGURATION **********#
+				#****************************************#
+				
+				require_once('../../include/config.inc.php');
+				require_once('../../include/form.inc.php');
+				require_once('../../include/debugging.inc.php');
+
+
+#*******************************************************************************************#
+
+				#****************************************#
+				#********** SECURE PAGE ACCESS **********#
+				#****************************************#
+
+				secureAccess('wwwcodingsorceresscom', 'user', '../../index.php');
+
+#********************************************************************************#
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +41,7 @@
     <title>Spellbound Treasures</title>
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico"> 
     <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="../../assets/css/debug.css">
     <script src="./assets/script.js" defer></script>
     <script src="./assets/copyright.js" defer></script>
 
@@ -79,15 +114,15 @@
     <header>
         <nav>
             <div class="navbar">
-                <a href="index.html">
+                <a href="index.php">
                     <img src="./images/spellbound_treasures_logo.svg" alt="blue crescent moon with a silver wand crossing it" height="100">
                 </a>
                 
                 <ul class="header-links">
-                    <li><a href="./index.html">Home</a></li>
-                    <li><a href="./index.html">Collections</a></li>
-                    <li><a href="./index.html">Contact</a></li>
-                    <li><a href="./index.html">About</a></li>
+                    <li><a href="./index.php">Home</a></li>
+                    <li><a href="./index.php">Collections</a></li>
+                    <li><a href="./index.php">Contact</a></li>
+                    <li><a href="./index.php">About</a></li>
                 </ul>
                 <div class="greeting"></div>
                 <div class="logout">Log out</div>
@@ -96,12 +131,12 @@
                         <img class="search" src="./images/search.png" alt="search icon" height="25">
                     </li>
                     <li>
-                        <a href="./pages/login.html">
+                        <a href="./pages/login.php">
                             <img src="./images/user.png" alt="user icon" height="25">
                         </a>
                     </li>
                     <li>
-                        <a href="./pages/cart.html">
+                        <a href="./pages/cart.php">
                             <img src="./images/cart.png" alt="shopping cart icon" height="25">
                         </a>
                         <div class="cartNumber invisible"></div>
@@ -109,7 +144,7 @@
                 </ul>
             </div>
         </nav>
-        <a href="./index.html">
+        <a href="./index.php">
             <img src="./images/spellbound_treasures_banner.png" alt="mystical shelf with spellbooks, magical trinkets, potions, candles and crystals, shrouded in darkness" width="100%">
         </a>
     </header>
@@ -132,25 +167,25 @@
 
     <footer>
         <div class="footer-section">
-            <a href="index.html">
+            <a href="index.php">
                 <img src="./images/spellbound_treasures_logo_square.png" alt="blue crescent moon with a silver wand crossing it" height="225">
             </a>
 
             <ul class="footer-list">
                 <li>Quick Links</li>
-                <li><a href="./pages/cart.html">Cart</a></li>
-                <li><a href="./pages/login.html">Login</a></li>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="./pages/cart.php">Cart</a></li>
+                <li><a href="./pages/login.php">Login</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li class="footerSearch">Search</li>
             </ul>
 
             <ul class="footer-list">
                 <li>Your Privacy Matters</li>
-                <li><a href="index.html">Shipping Policy</a></li>
-                <li><a href="index.html">Refund Policy</a></li>
-                <li><a href="index.html">Privacy Policy</a></li>
-                <li><a href="index.html">Terms of Service</a></li>
-                <li><a href="index.html">Legal Notice</a></li>
+                <li><a href="index.php">Shipping Policy</a></li>
+                <li><a href="index.php">Refund Policy</a></li>
+                <li><a href="index.php">Privacy Policy</a></li>
+                <li><a href="index.php">Terms of Service</a></li>
+                <li><a href="index.php">Legal Notice</a></li>
             </ul>
         </div>
     </footer>

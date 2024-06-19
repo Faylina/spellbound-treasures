@@ -98,10 +98,10 @@ const handlePurchase = (event) => {
 
         addNumberToCart();
 
-        window.location.href = "../pages/thanks.html";
+        window.location.href = "../pages/thanks.php";
 
     } else {
-        window.location.href = "../pages/login.html";
+        window.location.href = "../pages/login.php";
     }
 }
 
